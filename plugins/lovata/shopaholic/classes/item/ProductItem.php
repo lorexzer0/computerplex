@@ -115,7 +115,7 @@ class ProductItem extends ElementItem
     public function isActive()
     {
         return $this->active && !$this->trashed;
-    }
+    }    
 
     /**
      * Returns URL of a category page.

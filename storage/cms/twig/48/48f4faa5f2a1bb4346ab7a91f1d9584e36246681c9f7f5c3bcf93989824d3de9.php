@@ -110,7 +110,10 @@ class __TwigTemplate_fa94d2ba71495e5924602e4fcbec240a17f4b6fd1fc2d83c8eaf17266f8
       <button type=\"submit\" class=\"btn searchbtn\">
         <i class=\"fas fa-search\"></i>
       </button>
-      <div class=\"cart-wrap\" id=\"cartwrap\">
+      <div class=\"cart-wrap\" id=\"cartwrap\" onclick=\"window.location.href='";
+        // line 52
+        echo $this->extensions['Cms\Twig\Extension']->pageFilter("cartview");
+        echo "'\">
           ";
         // line 53
         $context['__cms_partial_params'] = [];
@@ -189,7 +192,7 @@ class __TwigTemplate_fa94d2ba71495e5924602e4fcbec240a17f4b6fd1fc2d83c8eaf17266f8
 
     public function getDebugInfo()
     {
-        return array (  148 => 77,  140 => 72,  120 => 54,  116 => 53,  103 => 42,  92 => 40,  88 => 39,  81 => 35,  70 => 26,  64 => 22,  58 => 18,  56 => 17,  39 => 2,  37 => 1,);
+        return array (  151 => 77,  143 => 72,  123 => 54,  119 => 53,  115 => 52,  103 => 42,  92 => 40,  88 => 39,  81 => 35,  70 => 26,  64 => 22,  58 => 18,  56 => 17,  39 => 2,  37 => 1,);
     }
 
     public function getSourceContext()
@@ -245,7 +248,7 @@ class __TwigTemplate_fa94d2ba71495e5924602e4fcbec240a17f4b6fd1fc2d83c8eaf17266f8
       <button type=\"submit\" class=\"btn searchbtn\">
         <i class=\"fas fa-search\"></i>
       </button>
-      <div class=\"cart-wrap\" id=\"cartwrap\">
+      <div class=\"cart-wrap\" id=\"cartwrap\" onclick=\"window.location.href='{{ 'cartview'|page }}'\">
           {% partial 'shop/header-cart' %}
       </div>
     </form>

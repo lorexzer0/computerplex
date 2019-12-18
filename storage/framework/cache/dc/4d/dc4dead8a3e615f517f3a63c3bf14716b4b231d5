@@ -1,4 +1,4 @@
-1576629599a:1:{s:16:"categorypage.htm";a:11:{s:8:"fileName";s:16:"categorypage.htm";s:7:"content";s:2246:"title = "Kategória"
+1576711571a:1:{s:16:"categorypage.htm";a:11:{s:8:"fileName";s:16:"categorypage.htm";s:7:"content";s:2271:"title = "Kategória"
 url = "/kategoriak/:catslug"
 layout = "default"
 is_hidden = 0
@@ -44,7 +44,7 @@ function onEnd()
                             <i class="fas fa-pallet" style="color: #f6a416"></i> Raktáron <strong>{{ offer.quantity }}</strong> db
                         </div>
                         <div class="detail">
-                            <i class="fas fa-money-bill" style="color:green"></i> <strong>{{ offer.price }}</strong> {{ offer.currency }}
+                            <i class="fas fa-money-bill" style="color:green"></i> <strong>{{ offer.price|number_format(0,',','.') }}</strong> {{ offer.currency }}
                         </div>                        
                     </div>                              
                 </div>
@@ -52,7 +52,7 @@ function onEnd()
             {% endif %}
         </section>
     </div>
-</div>";s:5:"mtime";i:1576628957;s:6:"markup";s:1926:"{% set category = CategoryPage.get() %}
+</div>";s:5:"mtime";i:1576710962;s:6:"markup";s:1951:"{% set category = CategoryPage.get() %}
 {% set products = ProductList.make().sort(ProductList.getSorting()).active().category(category.id) %}
 
 <div class="multibox">
@@ -78,7 +78,7 @@ function onEnd()
                             <i class="fas fa-pallet" style="color: #f6a416"></i> Raktáron <strong>{{ offer.quantity }}</strong> db
                         </div>
                         <div class="detail">
-                            <i class="fas fa-money-bill" style="color:green"></i> <strong>{{ offer.price }}</strong> {{ offer.currency }}
+                            <i class="fas fa-money-bill" style="color:green"></i> <strong>{{ offer.price|number_format(0,',','.') }}</strong> {{ offer.currency }}
                         </div>                        
                     </div>                              
                 </div>

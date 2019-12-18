@@ -110,3 +110,68 @@ $('#amountRaise').click(function () {
     var curval = $(this).parent().parent().find("#itemAmount").val()
     $(this).parent().parent().find("#itemAmount").val((+curval + 1 ));
 });
+
+$('#amountCart').click(function () {
+    var offerid = $(this).data('id');
+    var maxq = $(this).data('maxq');
+    var operation = $(this).data('operation');
+    var quantity = $("#itemAmount").val();
+
+    if(quantity > maxq){
+        $.oc.flashMsg({
+            type: 'error',
+            interval: 3,
+            text: 'Nincs ennyi termék raktáron!'
+        })
+        return;
+    }
+
+    $(this).request('onGetCartData', {
+        success: result => {
+            var current_quantity = 0;
+            console.log(result.data.position);
+            var positions = result.data.position;
+            if(positions !== null){
+                for(key in positions){
+                    var cartobj = positions[key];
+                    if(cartobj.item_id === offerid){
+                        current_quantity = cartobj.quantity;
+                        break;
+                    }
+                }
+            }
+
+            quantity = +quantity + current_quantity;
+
+            var adddata = {
+                'cart': [
+                    {'offer_id': offerid, 'quantity': quantity}
+                ]
+            }
+            
+            if(operation === 'update'){                
+                $(this).request('onUpdate', {
+                    data: adddata,
+                    update: {'shop/header-cart': $('#cartwrap')}
+                }).then(function() {
+                    $.oc.flashMsg({
+                        type: 'success',
+                        interval: 3,
+                        text: 'Termékszám növelve a kosárban!'
+                    })
+                })
+            }else {
+                $(this).request('onAdd', {
+                    data: adddata,
+                    update: {'shop/header-cart': $('#cartwrap')}
+                }).then(function() {
+                    $.oc.flashMsg({
+                        type: 'success',
+                        interval: 3,
+                        text: 'Termék sikeresen a kosárhoz adva!'
+                    })
+                })
+            }
+        }
+    })
+})

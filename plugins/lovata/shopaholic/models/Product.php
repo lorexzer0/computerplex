@@ -16,6 +16,7 @@ use October\Rain\Database\Traits\Purgeable;
 
 use Lovata\Toolbox\Traits\Helpers\TraitCached;
 use Lovata\Shopaholic\Classes\Import\ImportProductModelFromCSV;
+use Lorex\Computerplexoverride\Models\StorageStatus;
 
 /**
  * Class Product

@@ -1,4 +1,4 @@
-1576629600a:1:{s:15:"site/header.htm";a:6:{s:8:"fileName";s:15:"site/header.htm";s:7:"content";s:3441:"[CategoryList searchCategories]
+1576711746a:1:{s:15:"site/header.htm";a:6:{s:8:"fileName";s:15:"site/header.htm";s:7:"content";s:3496:"[CategoryList searchCategories]
 ==
 {% set categories = searchCategories.make().tree() %}
 <div class="wrapper bg-main px-lg-5">
@@ -51,7 +51,7 @@
       <button type="submit" class="btn searchbtn">
         <i class="fas fa-search"></i>
       </button>
-      <div class="cart-wrap" id="cartwrap">
+      <div class="cart-wrap" id="cartwrap" onclick="window.location.href='{{ 'cartview'|page }}'">
           {% partial 'shop/header-cart' %}
       </div>
     </form>
@@ -104,7 +104,7 @@
       </ul>
     </div>
   </nav>
-</div>";s:5:"mtime";i:1576622620;s:6:"markup";s:3404:"{% set categories = searchCategories.make().tree() %}
+</div>";s:5:"mtime";i:1576709838;s:6:"markup";s:3459:"{% set categories = searchCategories.make().tree() %}
 <div class="wrapper bg-main px-lg-5">
   <div class="col-sm-12 topbar">
     <div class="left">
@@ -155,7 +155,7 @@
       <button type="submit" class="btn searchbtn">
         <i class="fas fa-search"></i>
       </button>
-      <div class="cart-wrap" id="cartwrap">
+      <div class="cart-wrap" id="cartwrap" onclick="window.location.href='{{ 'cartview'|page }}'">
           {% partial 'shop/header-cart' %}
       </div>
     </form>

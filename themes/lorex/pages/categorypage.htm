@@ -44,7 +44,7 @@ function onEnd()
                             <i class="fas fa-pallet" style="color: #f6a416"></i> Raktáron <strong>{{ offer.quantity }}</strong> db
                         </div>
                         <div class="detail">
-                            <i class="fas fa-money-bill" style="color:green"></i> <strong>{{ offer.price }}</strong> {{ offer.currency }}
+                            <i class="fas fa-money-bill" style="color:green"></i> <strong>{{ offer.price|number_format(0,',','.') }}</strong> {{ offer.currency }}
                         </div>                        
                     </div>                              
                 </div>

@@ -51,7 +51,7 @@
       <button type="submit" class="btn searchbtn">
         <i class="fas fa-search"></i>
       </button>
-      <div class="cart-wrap" id="cartwrap">
+      <div class="cart-wrap" id="cartwrap" onclick="window.location.href='{{ 'cartview'|page }}'">
           {% partial 'shop/header-cart' %}
       </div>
     </form>

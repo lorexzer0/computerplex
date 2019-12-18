@@ -1,4 +1,4 @@
-9999999999a:14:{s:2:"id";i:2;s:6:"active";i:1;s:4:"name";s:50:"Intel i9-9900K Octa-Core 3.6GHz LGA1151 Processzor";s:4:"slug";s:49:"intel-i9-9900k-octa-core-36ghz-lga1151-processzor";s:4:"code";s:0:"";s:11:"category_id";i:2;s:8:"brand_id";N;s:12:"preview_text";s:0:"";s:23:"attachOne|preview_image";a:13:{s:2:"id";i:3;s:9:"disk_name";s:26:"5df941d1d0418741593500.jpg";s:9:"file_name";s:9:"yikes.jpg";s:9:"file_size";i:53537;s:12:"content_type";s:10:"image/jpeg";s:5:"title";N;s:11:"description";N;s:5:"field";s:13:"preview_image";s:10:"sort_order";i:3;s:10:"created_at";s:19:"2019-12-17 21:00:01";s:10:"updated_at";s:19:"2019-12-17 21:00:08";s:4:"path";s:105:"http://188.157.34.217:9999/ComputerPlex/storage/app/uploads/public/5df/941/d1d/5df941d1d0418741593500.jpg";s:9:"extension";s:3:"jpg";}s:11:"description";s:853:"<p><strong>Gyártó: Intel<br>Modell:&nbsp;<strong>i9-9900K Octa-Core 3.6GHz LGA1151</strong></strong>
+9999999999a:15:{s:2:"id";i:2;s:6:"active";i:1;s:4:"name";s:50:"Intel i9-9900K Octa-Core 3.6GHz LGA1151 Processzor";s:4:"slug";s:49:"intel-i9-9900k-octa-core-36ghz-lga1151-processzor";s:4:"code";s:0:"";s:11:"category_id";i:2;s:8:"brand_id";N;s:12:"preview_text";s:0:"";s:23:"attachOne|preview_image";a:13:{s:2:"id";i:3;s:9:"disk_name";s:26:"5df941d1d0418741593500.jpg";s:9:"file_name";s:9:"yikes.jpg";s:9:"file_size";i:53537;s:12:"content_type";s:10:"image/jpeg";s:5:"title";N;s:11:"description";N;s:5:"field";s:13:"preview_image";s:10:"sort_order";i:3;s:10:"created_at";s:19:"2019-12-17 21:00:01";s:10:"updated_at";s:19:"2019-12-17 21:00:08";s:4:"path";s:95:"http://localhost/ComputerPlex/storage/app/uploads/public/5df/941/d1d/5df941d1d0418741593500.jpg";s:9:"extension";s:3:"jpg";}s:11:"description";s:853:"<p><strong>Gyártó: Intel<br>Modell:&nbsp;<strong>i9-9900K Octa-Core 3.6GHz LGA1151</strong></strong>
 	<br>
 	<br><strong><u>Tulajdonságok:</u></strong>
 	<br>
@@ -18,4 +18,4 @@
 
 <p>
 	<br>
-</p>";s:17:"attachMany|images";a:0:{}s:13:"offer_id_list";a:1:{i:0;i:2;}s:22:"additional_category_id";a:0:{}s:7:"trashed";b:0;}
+</p>";s:17:"attachMany|images";a:0:{}s:13:"offer_id_list";a:1:{i:0;i:2;}s:22:"additional_category_id";a:0:{}s:7:"trashed";b:0;s:20:"property_value_array";a:0:{}}

@@ -96,7 +96,7 @@ class __TwigTemplate_ba1eec04cc92670d9b3f53cd83635ca8f7b9bd9bd26d8b10c2d453f2b0f
         }
         // line 33
         echo "            <h1 class=\"title\">Legfrissebb termékeink</h1>
-            <div class=\"productlist\">
+            <div class=\"productlist\">                
                 ";
         // line 35
         $context['_parent'] = $context;
@@ -104,48 +104,81 @@ class __TwigTemplate_ba1eec04cc92670d9b3f53cd83635ca8f7b9bd9bd26d8b10c2d453f2b0f
         foreach ($context['_seq'] as $context["_key"] => $context["product"]) {
             // line 36
             echo "                ";
-            $context["offer"] = twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["product"], "offer", [], "any", false, false, false, 36), "first", [], "method", false, false, false, 36);
+            $context["status"] = twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["product"], "getObject", [], "method", false, false, false, 36), "storagestatus", [], "any", false, false, false, 36);
             // line 37
-            echo "                <div class=\"product\" data-id=\"";
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["product"], "id", [], "any", false, false, false, 37), "html", null, true);
-            echo "\">
-                    <div class=\"hero\" style=\"background-image: url(";
+            echo "                ";
+            $context["offer"] = twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["product"], "offer", [], "any", false, false, false, 37), "first", [], "method", false, false, false, 37);
             // line 38
-            echo call_user_func_array($this->env->getFilter('resize')->getCallable(), [twig_get_attribute($this->env, $this->source, $context["product"], "preview_image", [], "any", false, false, false, 38), false, 252, ["quality" => "95", "extension" => "png"]]);
+            echo "                <div class=\"product\" data-id=\"";
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["product"], "id", [], "any", false, false, false, 38), "html", null, true);
+            echo "\">
+                    <div class=\"main-wrap\" onclick=\"window.location.href='";
+            // line 39
+            echo $this->extensions['Cms\Twig\Extension']->pageFilter("productpage", ["slug" => twig_get_attribute($this->env, $this->source, $context["product"], "slug", [], "any", false, false, false, 39)]);
+            echo "'\">                        
+                        <div class=\"badges\">
+                            ";
+            // line 41
+            if (twig_get_attribute($this->env, $this->source, ($context["status"] ?? null), "raktaron", [], "any", false, false, false, 41)) {
+                // line 42
+                echo "                            <span class=\"rbadge\">
+                                <i class=\"fas fa-pallet\"></i> Rendelhető
+                            </span>
+                            ";
+            }
+            // line 46
+            echo "                            ";
+            if (twig_get_attribute($this->env, $this->source, ($context["status"] ?? null), "szemelyesen", [], "any", false, false, false, 46)) {
+                // line 47
+                echo "                            <span class=\"gbadge\">
+                                <i class=\"fas fa-box-open\"></i> Személyesen átvehető
+                            </span>
+                            ";
+            }
+            // line 51
+            echo "                        </div>
+                        <div class=\"hero\" style=\"background-image: url(";
+            // line 52
+            echo call_user_func_array($this->env->getFilter('resize')->getCallable(), [twig_get_attribute($this->env, $this->source, $context["product"], "preview_image", [], "any", false, false, false, 52), false, 252, ["quality" => "95", "extension" => "png"]]);
             echo ")\">                
+                        </div>                    
                     </div>
                     <div class=\"title\">
                         <h3>";
-            // line 41
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["product"], "name", [], "any", false, false, false, 41), "html", null, true);
+            // line 56
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["product"], "name", [], "any", false, false, false, 56), "html", null, true);
             echo "</h3>
+                        <!-- <p>";
+            // line 57
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["status"] ?? null), "raktaron", [], "any", false, false, false, 57), "html", null, true);
+            echo "</p> -->
                     </div>
                     <div class=\"details\">
                         <div class=\"price\">
                             ";
-            // line 45
-            if ((twig_get_attribute($this->env, $this->source, ($context["offer"] ?? null), "old_price", [], "any", false, false, false, 45) && (twig_get_attribute($this->env, $this->source, ($context["offer"] ?? null), "old_price", [], "any", false, false, false, 45) > twig_get_attribute($this->env, $this->source, ($context["offer"] ?? null), "price", [], "any", false, false, false, 45)))) {
-                // line 46
+            // line 61
+            if ((twig_get_attribute($this->env, $this->source, ($context["offer"] ?? null), "old_price", [], "any", false, false, false, 61) && (twig_get_attribute($this->env, $this->source, ($context["offer"] ?? null), "old_price", [], "any", false, false, false, 61) > twig_get_attribute($this->env, $this->source, ($context["offer"] ?? null), "price", [], "any", false, false, false, 61)))) {
+                // line 62
                 echo "                            <small>";
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["offer"] ?? null), "old_price", [], "any", false, false, false, 46), "html", null, true);
+                echo twig_escape_filter($this->env, twig_number_format_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["offer"] ?? null), "old_price", [], "any", false, false, false, 62), 0, ",", "."), "html", null, true);
                 echo " ";
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["offer"] ?? null), "currency", [], "any", false, false, false, 46), "html", null, true);
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["offer"] ?? null), "currency", [], "any", false, false, false, 62), "html", null, true);
                 echo "</small>
                             ";
             }
-            // line 48
+            // line 64
             echo "                            <span>";
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["offer"] ?? null), "price", [], "any", false, false, false, 48), "html", null, true);
+            echo twig_escape_filter($this->env, twig_number_format_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["offer"] ?? null), "price", [], "any", false, false, false, 64), 0, ",", "."), "html", null, true);
             echo " ";
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["offer"] ?? null), "currency", [], "any", false, false, false, 48), "html", null, true);
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["offer"] ?? null), "currency", [], "any", false, false, false, 64), "html", null, true);
             echo "</span>
                             
-                        </div>
+                        </div>                        
                         <div class=\"addtocart\" data-offer=\"";
-            // line 51
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["offer"] ?? null), "id", [], "any", false, false, false, 51), "html", null, true);
+            // line 67
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["offer"] ?? null), "id", [], "any", false, false, false, 67), "html", null, true);
             echo "\" data-id=\"";
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["product"], "id", [], "any", false, false, false, 51), "html", null, true);
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["product"], "id", [], "any", false, false, false, 67), "html", null, true);
             echo "\">
                             <i class=\"fas fa-shopping-cart\"></i>
                         </div>
@@ -156,7 +189,7 @@ class __TwigTemplate_ba1eec04cc92670d9b3f53cd83635ca8f7b9bd9bd26d8b10c2d453f2b0f
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['product'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 57
+        // line 73
         echo "            </div>
         </section>
     </div>
@@ -175,7 +208,7 @@ class __TwigTemplate_ba1eec04cc92670d9b3f53cd83635ca8f7b9bd9bd26d8b10c2d453f2b0f
 
     public function getDebugInfo()
     {
-        return array (  160 => 57,  146 => 51,  137 => 48,  129 => 46,  127 => 45,  120 => 41,  114 => 38,  109 => 37,  106 => 36,  102 => 35,  98 => 33,  94 => 31,  73 => 16,  70 => 15,  66 => 14,  62 => 12,  60 => 11,  56 => 9,  52 => 8,  43 => 4,  39 => 2,  37 => 1,);
+        return array (  193 => 73,  179 => 67,  170 => 64,  162 => 62,  160 => 61,  153 => 57,  149 => 56,  142 => 52,  139 => 51,  133 => 47,  130 => 46,  124 => 42,  122 => 41,  117 => 39,  112 => 38,  109 => 37,  106 => 36,  102 => 35,  98 => 33,  94 => 31,  73 => 16,  70 => 15,  66 => 14,  62 => 12,  60 => 11,  56 => 9,  52 => 8,  43 => 4,  39 => 2,  37 => 1,);
     }
 
     public function getSourceContext()
@@ -213,23 +246,39 @@ class __TwigTemplate_ba1eec04cc92670d9b3f53cd83635ca8f7b9bd9bd26d8b10c2d453f2b0f
             </div>
             {% endif %}
             <h1 class=\"title\">Legfrissebb termékeink</h1>
-            <div class=\"productlist\">
+            <div class=\"productlist\">                
                 {% for product in productlist|slice(0,3) %}
+                {% set status = product.getObject().storagestatus %}
                 {% set offer = product.offer.first() %}
                 <div class=\"product\" data-id=\"{{ product.id }}\">
-                    <div class=\"hero\" style=\"background-image: url({{ product.preview_image | resize(false, 252, { quality: '95', extension: 'png' }) }})\">                
+                    <div class=\"main-wrap\" onclick=\"window.location.href='{{ 'productpage'|page({slug: product.slug}) }}'\">                        
+                        <div class=\"badges\">
+                            {% if status.raktaron %}
+                            <span class=\"rbadge\">
+                                <i class=\"fas fa-pallet\"></i> Rendelhető
+                            </span>
+                            {% endif %}
+                            {% if status.szemelyesen %}
+                            <span class=\"gbadge\">
+                                <i class=\"fas fa-box-open\"></i> Személyesen átvehető
+                            </span>
+                            {% endif %}
+                        </div>
+                        <div class=\"hero\" style=\"background-image: url({{ product.preview_image | resize(false, 252, { quality: '95', extension: 'png' }) }})\">                
+                        </div>                    
                     </div>
                     <div class=\"title\">
                         <h3>{{ product.name }}</h3>
+                        <!-- <p>{{ status.raktaron }}</p> -->
                     </div>
                     <div class=\"details\">
                         <div class=\"price\">
                             {% if offer.old_price and offer.old_price > offer.price %}
-                            <small>{{ offer.old_price}} {{ offer.currency }}</small>
+                            <small>{{ offer.old_price|number_format(0,',','.')}} {{ offer.currency }}</small>
                             {% endif %}
-                            <span>{{ offer.price }} {{ offer.currency }}</span>
+                            <span>{{ offer.price|number_format(0,',','.') }} {{ offer.currency }}</span>
                             
-                        </div>
+                        </div>                        
                         <div class=\"addtocart\" data-offer=\"{{ offer.id }}\" data-id=\"{{ product.id }}\">
                             <i class=\"fas fa-shopping-cart\"></i>
                         </div>

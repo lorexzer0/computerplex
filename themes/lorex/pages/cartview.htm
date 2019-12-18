@@ -1,0 +1,40 @@
+title = "Kosár tartalma"
+url = "/kosar"
+layout = "default"
+is_hidden = 0
+
+[Cart]
+==
+{% set cart = Cart.get() %}
+<div class="multibox">
+    <div class="sidepanel">
+        {% partial 'box/categorylist' %} 
+    </div>
+    <div class="content product-content">
+        <section class="cartboxes">
+            {% if cart.isNotEmpty %}
+                {% for item in cart %}
+                    {% set offer = item.offer %}
+                    {% set product = offer.product %}
+                    <div class="cartbox">
+                        <div class="hero" style="background-image:url({{ product.preview_image | resize(false, 252, { quality: '95', extension: 'png' }) }})"></div>
+                        <div class="details">
+                            <h1>{{ product.name }}</h1>
+                            <h3><i class="fas fa-box"></i> Mennyiség: <strong>{{ item.quantity }} db</strong></h3>
+                            <h3><i class="fas fa-money-bill-alt"></i> Egységár: <strong>{{ offer.price|number_format(0,',','.') }} {{ offer.currency }}</strong></h3>
+                            <h3><i class="fas fa-money-bill-wave"></i> Összár: <strong>{{ item.price|number_format(0,',','.') }} {{ item.currency }}</strong></h3>                            
+                        </div>
+                    </div>
+                    {% endfor %}
+                <div class="foot">
+                    <h3><i class="fas fa-shopping-cart"></i> Kosárban lévő termékek száma: <strong> {{ cart.getTotalQuantity() }} db</strong></h3>
+                    <h3><i class="fas fa-receipt"></i> Összesen: <strong>{{ cart.getTotalPrice|number_format(0,',','.') }} {{ cart.getCurrency() }}</strong></h3>
+                </div>
+            {% else %}
+            <div class="emptycart">
+                <h1>Az ön kosara üres. Nézzen körül :)</h1>
+            </div>
+            {% endif %}
+        </section>
+    </div>
+</div>

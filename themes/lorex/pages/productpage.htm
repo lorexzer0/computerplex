@@ -7,8 +7,21 @@ is_hidden = 0
 slug = "{{ :slug }}"
 slug_required = 1
 smart_url_check = 0
+
+[Cart]
+==
+<?php
+function onEnd()
+{
+    $this->page->title = $this->components['ProductPage']->get()->name; 
+}
+
+?>
 ==
 {% set product = ProductPage.get() %}
+{% set offer = product.offer.first() %}
+{% set status = product.getObject().storagestatus %}
+{% set cart = Cart.get() %}
 <div class="multibox">
     <div class="sidepanel">
         {% partial 'box/categorylist' %} 
@@ -16,7 +29,23 @@ smart_url_check = 0
     <div class="content product-content">
         <section class="productmain" data-id="{{ product.id }}">
             <h1>{{ product.name }}</h1>
+            <hr class="dividerhr">
             <div class="images">
+                <div class="badges">
+                    {% if status.raktaron %}
+                    <span>
+                        <i class="fas fa-pallet"></i> Rendelhető
+                    </span>
+                    {% endif %}
+                    {% if status.szemelyesen %}
+                    <span class="special">
+                        <i class="fas fa-box-open"></i> Személyesen átvehető
+                    </span>
+                    {% endif %}
+                    <span>
+                        <i class="fas fa-pallet"></i> Raktáron <strong>{{ offer.quantity }} db</strong>
+                    </span>
+                </div>
                 <div class="hero {% if product.images|length == 0 %}full-hero{% endif %}" style="background-image: url({{ product.preview_image | resize(false, false, { quality: '100', extension: 'png' }) }});"></div>
                 {% if product.images and product.images|length > 0 %}
                 <div class="gallery">
@@ -31,7 +60,18 @@ smart_url_check = 0
                 </div>
                 {% endif %}
             </div>
+            {# GETTING CURRENT ITEMS
+            {% for position in cart %}
+            {% set testoffer = position.offer %}
+            <p>{{ testoffer.product.name }} - {{ position.quantity }} db</p>
+            {% endfor %} #}
             <div class="buyzone">
+                <p class="price">
+                    Termék ára: <strong> {{ offer.price|number_format(0,',','.') }} {{ offer.currency }} </strong>
+                    {% if offer.discount_price > 0 %}
+                    | <small> Eredeti ár: {{ offer.old_price|number_format(0,',','.') }} {{ offer.currency }} <strong>(-{{ ((offer.discount_price / offer.old_price)*100)|number_format(0,'.',',') }} %)</strong></small>
+                    {% endif %}
+                </p>
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <button type="button" class="btn btn-outline-secondary" id="amountLower"><i class="fas fa-minus"></i></button>
@@ -40,10 +80,17 @@ smart_url_check = 0
                         <input type="number" name="amount" id="itemAmount" class="form-control" value="1" min="1" maxlength="2">
                     </div>
                     <div class="input-group-append">
-                        <button type="button" class="btn btn-outline-secondary" id="amountRaise"><i class="fas fa-plus"></i></button>                        
-                        <button type="button" class="btn btn-outline-secondary"><i class="fas fa-shopping-cart"></i></button>
+                        <button type="button" class="btn btn-outline-secondary" id="amountRaise"><i class="fas fa-plus"></i></button>
+                        {% if cart.hasOffer(offer.id) %}
+                        <button type="button" class="btn btn-outline-secondary" id="amountCart" data-id="{{ offer.id }}" data-maxq="{{ offer.quantity }}" data-operation="update"><i class="fas fa-shopping-cart"></i></button>
+                        {% else %}
+                        <button type="button" class="btn btn-outline-secondary" id="amountCart" data-id="{{ offer.id }}" data-maxq="{{ offer.quantity }}" data-operation="add"><i class="fas fa-shopping-cart"></i></button>
+                        {% endif %}
                     </div>
                 </div>
+                <p class="price">
+                    Szállítás 1-3 munkanapon belül
+                </p>
             </div>
             <div class="details">
                 <h1 class="title">Leírás</h1>

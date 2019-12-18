@@ -1,4 +1,4 @@
-1576629599a:1:{s:8:"home.htm";a:12:{s:8:"fileName";s:8:"home.htm";s:7:"content";s:2830:"title = "Demonstration"
+1576711571a:1:{s:8:"home.htm";a:12:{s:8:"fileName";s:8:"home.htm";s:7:"content";s:3864:"title = "Főoldal"
 url = "/"
 layout = "default"
 is_hidden = 0
@@ -44,23 +44,39 @@ sorting = "new"
             </div>
             {% endif %}
             <h1 class="title">Legfrissebb termékeink</h1>
-            <div class="productlist">
+            <div class="productlist">                
                 {% for product in productlist|slice(0,3) %}
+                {% set status = product.getObject().storagestatus %}
                 {% set offer = product.offer.first() %}
                 <div class="product" data-id="{{ product.id }}">
-                    <div class="hero" style="background-image: url({{ product.preview_image | resize(false, 252, { quality: '95', extension: 'png' }) }})">                
+                    <div class="main-wrap" onclick="window.location.href='{{ 'productpage'|page({slug: product.slug}) }}'">                        
+                        <div class="badges">
+                            {% if status.raktaron %}
+                            <span class="rbadge">
+                                <i class="fas fa-pallet"></i> Rendelhető
+                            </span>
+                            {% endif %}
+                            {% if status.szemelyesen %}
+                            <span class="gbadge">
+                                <i class="fas fa-box-open"></i> Személyesen átvehető
+                            </span>
+                            {% endif %}
+                        </div>
+                        <div class="hero" style="background-image: url({{ product.preview_image | resize(false, 252, { quality: '95', extension: 'png' }) }})">                
+                        </div>                    
                     </div>
                     <div class="title">
                         <h3>{{ product.name }}</h3>
+                        <!-- <p>{{ status.raktaron }}</p> -->
                     </div>
                     <div class="details">
                         <div class="price">
                             {% if offer.old_price and offer.old_price > offer.price %}
-                            <small>{{ offer.old_price}} {{ offer.currency }}</small>
+                            <small>{{ offer.old_price|number_format(0,',','.')}} {{ offer.currency }}</small>
                             {% endif %}
-                            <span>{{ offer.price }} {{ offer.currency }}</span>
+                            <span>{{ offer.price|number_format(0,',','.') }} {{ offer.currency }}</span>
                             
-                        </div>
+                        </div>                        
                         <div class="addtocart" data-offer="{{ offer.id }}" data-id="{{ product.id }}">
                             <i class="fas fa-shopping-cart"></i>
                         </div>
@@ -70,7 +86,7 @@ sorting = "new"
             </div>
         </section>
     </div>
-</div>";s:5:"mtime";i:1576617066;s:6:"markup";s:2668:"{% set productlist = newProducts.make().sort(newProducts.getSorting()).active() %}
+</div>";s:5:"mtime";i:1576710970;s:6:"markup";s:3707:"{% set productlist = newProducts.make().sort(newProducts.getSorting()).active() %}
 <div class="multibox">
     <div class="sidepanel">
         {% partial 'box/categorylist' %} 
@@ -103,23 +119,39 @@ sorting = "new"
             </div>
             {% endif %}
             <h1 class="title">Legfrissebb termékeink</h1>
-            <div class="productlist">
+            <div class="productlist">                
                 {% for product in productlist|slice(0,3) %}
+                {% set status = product.getObject().storagestatus %}
                 {% set offer = product.offer.first() %}
                 <div class="product" data-id="{{ product.id }}">
-                    <div class="hero" style="background-image: url({{ product.preview_image | resize(false, 252, { quality: '95', extension: 'png' }) }})">                
+                    <div class="main-wrap" onclick="window.location.href='{{ 'productpage'|page({slug: product.slug}) }}'">                        
+                        <div class="badges">
+                            {% if status.raktaron %}
+                            <span class="rbadge">
+                                <i class="fas fa-pallet"></i> Rendelhető
+                            </span>
+                            {% endif %}
+                            {% if status.szemelyesen %}
+                            <span class="gbadge">
+                                <i class="fas fa-box-open"></i> Személyesen átvehető
+                            </span>
+                            {% endif %}
+                        </div>
+                        <div class="hero" style="background-image: url({{ product.preview_image | resize(false, 252, { quality: '95', extension: 'png' }) }})">                
+                        </div>                    
                     </div>
                     <div class="title">
                         <h3>{{ product.name }}</h3>
+                        <!-- <p>{{ status.raktaron }}</p> -->
                     </div>
                     <div class="details">
                         <div class="price">
                             {% if offer.old_price and offer.old_price > offer.price %}
-                            <small>{{ offer.old_price}} {{ offer.currency }}</small>
+                            <small>{{ offer.old_price|number_format(0,',','.')}} {{ offer.currency }}</small>
                             {% endif %}
-                            <span>{{ offer.price }} {{ offer.currency }}</span>
+                            <span>{{ offer.price|number_format(0,',','.') }} {{ offer.currency }}</span>
                             
-                        </div>
+                        </div>                        
                         <div class="addtocart" data-offer="{{ offer.id }}" data-id="{{ product.id }}">
                             <i class="fas fa-shopping-cart"></i>
                         </div>
@@ -129,4 +161,4 @@ sorting = "new"
             </div>
         </section>
     </div>
-</div>";s:4:"code";N;s:5:"title";s:13:"Demonstration";s:3:"url";s:1:"/";s:6:"layout";s:7:"default";s:9:"is_hidden";s:1:"0";s:6:"slider";a:1:{s:13:"slide_show_id";s:1:"1";}s:4:"Cart";a:0:{}s:23:"ProductList newProducts";a:1:{s:7:"sorting";s:3:"new";}}}
+</div>";s:4:"code";N;s:5:"title";s:8:"Főoldal";s:3:"url";s:1:"/";s:6:"layout";s:7:"default";s:9:"is_hidden";s:1:"0";s:6:"slider";a:1:{s:13:"slide_show_id";s:1:"1";}s:4:"Cart";a:0:{}s:23:"ProductList newProducts";a:1:{s:7:"sorting";s:3:"new";}}}

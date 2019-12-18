@@ -1,0 +1,6 @@
+plugin:
+    name: 'lorex.computerplexoverride::lang.plugin.name'
+    description: 'lorex.computerplexoverride::lang.plugin.description'
+    author: Lorex
+    icon: oc-icon-adjust
+    homepage: ''

@@ -107,7 +107,7 @@ class __TwigTemplate_c6c9fd6f2824176e9163dbc528a004a38b463015e50c80af8633173907a
                         <div class=\"detail\">
                             <i class=\"fas fa-money-bill\" style=\"color:green\"></i> <strong>";
                 // line 27
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["offer"] ?? null), "price", [], "any", false, false, false, 27), "html", null, true);
+                echo twig_escape_filter($this->env, twig_number_format_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["offer"] ?? null), "price", [], "any", false, false, false, 27), 0, ",", "."), "html", null, true);
                 echo "</strong> ";
                 echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["offer"] ?? null), "currency", [], "any", false, false, false, 27), "html", null, true);
                 echo "
@@ -171,7 +171,7 @@ class __TwigTemplate_c6c9fd6f2824176e9163dbc528a004a38b463015e50c80af8633173907a
                             <i class=\"fas fa-pallet\" style=\"color: #f6a416\"></i> Raktáron <strong>{{ offer.quantity }}</strong> db
                         </div>
                         <div class=\"detail\">
-                            <i class=\"fas fa-money-bill\" style=\"color:green\"></i> <strong>{{ offer.price }}</strong> {{ offer.currency }}
+                            <i class=\"fas fa-money-bill\" style=\"color:green\"></i> <strong>{{ offer.price|number_format(0,',','.') }}</strong> {{ offer.currency }}
                         </div>                        
                     </div>                              
                 </div>

@@ -1,5 +1,8 @@
 <?php 
-class Cms5df971c34f208091761021_9a2d2583975f3673ac967d07a679715cClass extends Cms\Classes\PageCode
+class Cms5dfab2fe218b4866626256_6e82e12e1daf08e4c40ea4e250fca7afClass extends Cms\Classes\PageCode
 {
-
+public function onEnd()
+{
+    $this->page->title = $this->components['ProductPage']->get()->name; 
+}
 }
