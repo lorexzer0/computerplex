@@ -1,0 +1,73 @@
+title = "Demonstration"
+url = "/"
+layout = "default"
+is_hidden = 0
+
+[slider]
+slide_show_id = 1
+
+[Cart]
+
+[ProductList newProducts]
+sorting = "new"
+==
+{% set productlist = newProducts.make().sort(newProducts.getSorting()).active() %}
+<div class="multibox">
+    <div class="sidepanel">
+        {% partial 'box/categorylist' %} 
+    </div>
+    <div class="content">
+        <section class="carousel">
+            {% component 'slider' %}
+        </section>
+        <section class="promotional">
+            {% if false %}
+            <h1 class="title">Jelenlegi akciós termékeink</h1>
+            <div class="productlist">
+                {% for i in 0..5 %}
+                <div class="product">
+                    <div class="hero" style="background-image: url({{ 'assets/images/product-test.jpg'|theme }})">                
+                    </div>
+                    <div class="title">
+                        <h3>I7-8700K BOX</h3>
+                    </div>
+                    <div class="details">
+                        <span class="price">
+                            129.000 HUF
+                        </span>
+                        <div class="addtocart">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+            <h1 class="title">Legfrissebb termékeink</h1>
+            <div class="productlist">
+                {% for product in productlist|slice(0,3) %}
+                {% set offer = product.offer.first() %}
+                <div class="product" data-id="{{ product.id }}">
+                    <div class="hero" style="background-image: url({{ product.preview_image | resize(false, 252, { quality: '95', extension: 'png' }) }})">                
+                    </div>
+                    <div class="title">
+                        <h3>{{ product.name }}</h3>
+                    </div>
+                    <div class="details">
+                        <div class="price">
+                            {% if offer.old_price and offer.old_price > offer.price %}
+                            <small>{{ offer.old_price}} {{ offer.currency }}</small>
+                            {% endif %}
+                            <span>{{ offer.price }} {{ offer.currency }}</span>
+                            
+                        </div>
+                        <div class="addtocart" data-offer="{{ offer.id }}" data-id="{{ product.id }}">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+    </div>
+</div>

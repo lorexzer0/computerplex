@@ -1,0 +1,25 @@
+title = "Kategóriák"
+url = "/kategoriak"
+layout = "default"
+is_hidden = 0
+
+[CategoryList CategoryListMain]
+==
+{% set categories = CategoryListMain.make().tree() %}
+<div class="multibox">
+    <div class="sidepanel">
+        {% partial 'box/categorylist' %} 
+    </div>
+    <div class="content">
+        <section class="categoryboxes">
+            {% if categories.isNotEmpty() %}
+                {% for category in categories %}
+                    <div class="categorybox" data-id="{{ category.id }}" onclick="window.location.href='{{ 'categorypage'|page({catslug: category.slug}) }}'">
+                        <div class="hero" style="background-image: url({{ category.preview_image | resize(false, 252, { quality: '95', extension: 'png' }) }});"></div>
+                        <h1>{{ category.name }}</h1>                    
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </section>
+    </div>
+</div>

@@ -1,0 +1,65 @@
+1576629624a:1:{s:20:"box/categorylist.htm";a:6:{s:8:"fileName";s:20:"box/categorylist.htm";s:7:"content";s:1330:"[CategoryList]
+==
+{% set categories = CategoryList.make().tree() %}
+<div class="listbox">
+    <div class="header">
+        <h1>Kategóriák</h1>
+    </div>
+    <div class="list">
+        {% if categories.isNotEmpty() %}
+        {% for category in categories %}
+        <div class="category" {% if not category.children.isNotEmpty() %} onclick="window.location.href='{{ 'categorypage'|page({catslug: category.slug}) }}'" {% endif %}>
+            <div class="list-item {% if category.children.isNotEmpty() %} dropdown{% endif %}">
+                {{ category.name }}
+                <span>({{ category.product_count }})</span>
+            </div>
+            {% if category.children.isNotEmpty() %}
+            <div class="child-categories">
+                {% for childcat in category.children %}
+                <div class="child-item" onclick="window.location.href='{{ 'categorypage'|page({catslug: childcat.slug}) }}'">
+                    {{ childcat.name }}
+                    <span>({{ childcat.product_count }})</span>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+        {% endfor %}
+        {% else %}
+        <div class="list-item">
+            Nincsenek Kategóriák...
+        </div>
+        {% endif %}
+    </div>
+</div>";s:5:"mtime";i:1576629023;s:6:"markup";s:1310:"{% set categories = CategoryList.make().tree() %}
+<div class="listbox">
+    <div class="header">
+        <h1>Kategóriák</h1>
+    </div>
+    <div class="list">
+        {% if categories.isNotEmpty() %}
+        {% for category in categories %}
+        <div class="category" {% if not category.children.isNotEmpty() %} onclick="window.location.href='{{ 'categorypage'|page({catslug: category.slug}) }}'" {% endif %}>
+            <div class="list-item {% if category.children.isNotEmpty() %} dropdown{% endif %}">
+                {{ category.name }}
+                <span>({{ category.product_count }})</span>
+            </div>
+            {% if category.children.isNotEmpty() %}
+            <div class="child-categories">
+                {% for childcat in category.children %}
+                <div class="child-item" onclick="window.location.href='{{ 'categorypage'|page({catslug: childcat.slug}) }}'">
+                    {{ childcat.name }}
+                    <span>({{ childcat.product_count }})</span>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+        {% endfor %}
+        {% else %}
+        <div class="list-item">
+            Nincsenek Kategóriák...
+        </div>
+        {% endif %}
+    </div>
+</div>";s:4:"code";N;s:12:"CategoryList";a:0:{}}}

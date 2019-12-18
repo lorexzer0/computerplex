@@ -1,0 +1,42 @@
+1576629599a:1:{s:16:"categorylist.htm";a:10:{s:8:"fileName";s:16:"categorylist.htm";s:7:"content";s:970:"title = "Kategóriák"
+url = "/kategoriak"
+layout = "default"
+is_hidden = 0
+
+[CategoryList CategoryListMain]
+==
+{% set categories = CategoryListMain.make().tree() %}
+<div class="multibox">
+    <div class="sidepanel">
+        {% partial 'box/categorylist' %} 
+    </div>
+    <div class="content">
+        <section class="categoryboxes">
+            {% if categories.isNotEmpty() %}
+                {% for category in categories %}
+                    <div class="categorybox" data-id="{{ category.id }}" onclick="window.location.href='{{ 'categorypage'|page({catslug: category.slug}) }}'">
+                        <div class="hero" style="background-image: url({{ category.preview_image | resize(false, 252, { quality: '95', extension: 'png' }) }});"></div>
+                        <h1>{{ category.name }}</h1>                    
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </section>
+    </div>
+</div>";s:5:"mtime";i:1576628981;s:6:"markup";s:851:"{% set categories = CategoryListMain.make().tree() %}
+<div class="multibox">
+    <div class="sidepanel">
+        {% partial 'box/categorylist' %} 
+    </div>
+    <div class="content">
+        <section class="categoryboxes">
+            {% if categories.isNotEmpty() %}
+                {% for category in categories %}
+                    <div class="categorybox" data-id="{{ category.id }}" onclick="window.location.href='{{ 'categorypage'|page({catslug: category.slug}) }}'">
+                        <div class="hero" style="background-image: url({{ category.preview_image | resize(false, 252, { quality: '95', extension: 'png' }) }});"></div>
+                        <h1>{{ category.name }}</h1>                    
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </section>
+    </div>
+</div>";s:4:"code";N;s:5:"title";s:12:"Kategóriák";s:3:"url";s:11:"/kategoriak";s:6:"layout";s:7:"default";s:9:"is_hidden";s:1:"0";s:29:"CategoryList CategoryListMain";a:0:{}}}

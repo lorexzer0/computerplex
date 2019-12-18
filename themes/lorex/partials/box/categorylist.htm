@@ -1,0 +1,34 @@
+[CategoryList]
+==
+{% set categories = CategoryList.make().tree() %}
+<div class="listbox">
+    <div class="header">
+        <h1>Kategóriák</h1>
+    </div>
+    <div class="list">
+        {% if categories.isNotEmpty() %}
+        {% for category in categories %}
+        <div class="category" {% if not category.children.isNotEmpty() %} onclick="window.location.href='{{ 'categorypage'|page({catslug: category.slug}) }}'" {% endif %}>
+            <div class="list-item {% if category.children.isNotEmpty() %} dropdown{% endif %}">
+                {{ category.name }}
+                <span>({{ category.product_count }})</span>
+            </div>
+            {% if category.children.isNotEmpty() %}
+            <div class="child-categories">
+                {% for childcat in category.children %}
+                <div class="child-item" onclick="window.location.href='{{ 'categorypage'|page({catslug: childcat.slug}) }}'">
+                    {{ childcat.name }}
+                    <span>({{ childcat.product_count }})</span>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+        {% endfor %}
+        {% else %}
+        <div class="list-item">
+            Nincsenek Kategóriák...
+        </div>
+        {% endif %}
+    </div>
+</div>

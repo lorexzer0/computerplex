@@ -1,0 +1,77 @@
+1576629600a:1:{s:15:"site/footer.htm";a:5:{s:8:"fileName";s:15:"site/footer.htm";s:7:"content";s:1344:"<div class="footerblock">
+  <div class="hero">
+    <div class="logo-wrap">
+        <img src="{{ 'assets/images/logo.png'|theme }}" alt="">
+    </div>
+    <p>
+      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex sapiente fuga
+      doloremque praesentium voluptates, accusamus eum labore quisquam assumenda
+      repudiandae?
+    </p>
+    <p>
+        <strong>Fizetési módok</strong><br>
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reiciendis, voluptatem.
+        <div class="payment-list">
+            {% for i in 0..2 %}
+            <div class="payment">
+                <img src="{{ 'assets/images/payments/mastercard.png'|theme }}" alt="MasterCard">
+            </div>
+            {% endfor %}
+        </div>
+    </p>
+  </div>
+  <div class="footer-content">
+      <div class="blocklist">
+          <div class="cblock">
+            <h3>Közösségi oldalak</h3>
+            <p><i class="fab fa-facebook"></i> Facebook</p>
+          </div>
+          <div class="cblock">
+            <h3>Kapcsolat</h3>
+            <p><i class="fas fa-home"></i> Cím</p>
+            <p><i class="fas fa-phone"></i> Tel</p>
+            <p><i class="fas fa-envelope"></i> info@computerplex.hu</p>
+        </div>
+      </div>
+      <p>Copyright &copy; Computer Plex</p>
+  </div>
+</div>
+
+";s:5:"mtime";i:1576540048;s:6:"markup";s:1340:"<div class="footerblock">
+  <div class="hero">
+    <div class="logo-wrap">
+        <img src="{{ 'assets/images/logo.png'|theme }}" alt="">
+    </div>
+    <p>
+      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex sapiente fuga
+      doloremque praesentium voluptates, accusamus eum labore quisquam assumenda
+      repudiandae?
+    </p>
+    <p>
+        <strong>Fizetési módok</strong><br>
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reiciendis, voluptatem.
+        <div class="payment-list">
+            {% for i in 0..2 %}
+            <div class="payment">
+                <img src="{{ 'assets/images/payments/mastercard.png'|theme }}" alt="MasterCard">
+            </div>
+            {% endfor %}
+        </div>
+    </p>
+  </div>
+  <div class="footer-content">
+      <div class="blocklist">
+          <div class="cblock">
+            <h3>Közösségi oldalak</h3>
+            <p><i class="fab fa-facebook"></i> Facebook</p>
+          </div>
+          <div class="cblock">
+            <h3>Kapcsolat</h3>
+            <p><i class="fas fa-home"></i> Cím</p>
+            <p><i class="fas fa-phone"></i> Tel</p>
+            <p><i class="fas fa-envelope"></i> info@computerplex.hu</p>
+        </div>
+      </div>
+      <p>Copyright &copy; Computer Plex</p>
+  </div>
+</div>";s:4:"code";N;}}

@@ -1,0 +1,7 @@
+[Cart]
+==
+{% set cart = Cart.get() %}
+<div class="inner">
+    <i class="fas fa-shopping-cart"></i>
+    <small>({{ cart.getTotalQuantity() }})</small>
+</div>

@@ -1,0 +1,149 @@
+1576629275a:1:{s:15:"productpage.htm";a:10:{s:8:"fileName";s:15:"productpage.htm";s:7:"content";s:3747:"title = "Termék"
+url = "/termek/:slug"
+layout = "default"
+is_hidden = 0
+
+[ProductPage]
+slug = "{{ :slug }}"
+slug_required = 1
+smart_url_check = 0
+==
+{% set product = ProductPage.get() %}
+<div class="multibox">
+    <div class="sidepanel">
+        {% partial 'box/categorylist' %} 
+    </div>
+    <div class="content product-content">
+        <section class="productmain" data-id="{{ product.id }}">
+            <h1>{{ product.name }}</h1>
+            <div class="images">
+                <div class="hero {% if product.images|length == 0 %}full-hero{% endif %}" style="background-image: url({{ product.preview_image | resize(false, false, { quality: '100', extension: 'png' }) }});"></div>
+                {% if product.images and product.images|length > 0 %}
+                <div class="gallery">
+                    <div class="galleryobject">
+                        <img src="{{ product.preview_image | resize(false, false, { quality: '100', extension: 'png' }) }}" alt="">
+                    </div>
+                    {% for image in product.images|slice(0,3) %}
+                    <div class="galleryobject">
+                        <img src="{{ image | resize(false, false, { quality: '100', extension: 'png' }) }}" alt="">
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+            <div class="buyzone">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <button type="button" class="btn btn-outline-secondary" id="amountLower"><i class="fas fa-minus"></i></button>
+                    </div>
+                    <div>
+                        <input type="number" name="amount" id="itemAmount" class="form-control" value="1" min="1" maxlength="2">
+                    </div>
+                    <div class="input-group-append">
+                        <button type="button" class="btn btn-outline-secondary" id="amountRaise"><i class="fas fa-plus"></i></button>                        
+                        <button type="button" class="btn btn-outline-secondary"><i class="fas fa-shopping-cart"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="details">
+                <h1 class="title">Leírás</h1>
+                <div class="description">
+                    {{ product.description|raw }}
+                </div>
+                {% set propertyList = product.property %}
+                <!-- START OF ACTIVE PROPS COUNTER -->
+                {% set activeProps = 0 %}
+                {% for property in propertyList if property.hasValue() %}
+                {% set activeProps = activeProps + 1 %}
+                {% endfor %}
+                <!-- END OF ACTIVE PROPS -->
+                {% if propertyList.isNotEmpty and activeProps > 0 %}
+                <h1 class="title">Specifikációk</h1>
+                <div class="properties">
+                    <table>                        
+                        {% for property in propertyList if property.hasValue() %}                        
+                        <tr>
+                            <td>
+                                {{ property.name }}
+                            </td>
+                            <td>
+                                {{ property.property_value.getValueString() }} {{ property.measure.name }}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+                {% endif %}                
+            </div>
+        </section>
+    </div>
+</div>";s:5:"mtime";i:1576628673;s:6:"markup";s:3587:"{% set product = ProductPage.get() %}
+<div class="multibox">
+    <div class="sidepanel">
+        {% partial 'box/categorylist' %} 
+    </div>
+    <div class="content product-content">
+        <section class="productmain" data-id="{{ product.id }}">
+            <h1>{{ product.name }}</h1>
+            <div class="images">
+                <div class="hero {% if product.images|length == 0 %}full-hero{% endif %}" style="background-image: url({{ product.preview_image | resize(false, false, { quality: '100', extension: 'png' }) }});"></div>
+                {% if product.images and product.images|length > 0 %}
+                <div class="gallery">
+                    <div class="galleryobject">
+                        <img src="{{ product.preview_image | resize(false, false, { quality: '100', extension: 'png' }) }}" alt="">
+                    </div>
+                    {% for image in product.images|slice(0,3) %}
+                    <div class="galleryobject">
+                        <img src="{{ image | resize(false, false, { quality: '100', extension: 'png' }) }}" alt="">
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+            <div class="buyzone">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <button type="button" class="btn btn-outline-secondary" id="amountLower"><i class="fas fa-minus"></i></button>
+                    </div>
+                    <div>
+                        <input type="number" name="amount" id="itemAmount" class="form-control" value="1" min="1" maxlength="2">
+                    </div>
+                    <div class="input-group-append">
+                        <button type="button" class="btn btn-outline-secondary" id="amountRaise"><i class="fas fa-plus"></i></button>                        
+                        <button type="button" class="btn btn-outline-secondary"><i class="fas fa-shopping-cart"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="details">
+                <h1 class="title">Leírás</h1>
+                <div class="description">
+                    {{ product.description|raw }}
+                </div>
+                {% set propertyList = product.property %}
+                <!-- START OF ACTIVE PROPS COUNTER -->
+                {% set activeProps = 0 %}
+                {% for property in propertyList if property.hasValue() %}
+                {% set activeProps = activeProps + 1 %}
+                {% endfor %}
+                <!-- END OF ACTIVE PROPS -->
+                {% if propertyList.isNotEmpty and activeProps > 0 %}
+                <h1 class="title">Specifikációk</h1>
+                <div class="properties">
+                    <table>                        
+                        {% for property in propertyList if property.hasValue() %}                        
+                        <tr>
+                            <td>
+                                {{ property.name }}
+                            </td>
+                            <td>
+                                {{ property.property_value.getValueString() }} {{ property.measure.name }}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+                {% endif %}                
+            </div>
+        </section>
+    </div>
+</div>";s:4:"code";N;s:5:"title";s:7:"Termék";s:3:"url";s:13:"/termek/:slug";s:6:"layout";s:7:"default";s:9:"is_hidden";s:1:"0";s:11:"ProductPage";a:3:{s:4:"slug";s:11:"{{ :slug }}";s:13:"slug_required";s:1:"1";s:15:"smart_url_check";s:1:"0";}}}
