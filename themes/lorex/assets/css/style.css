@@ -936,6 +936,7 @@ input[type=number] {
   padding:20px;
   background-color: white;
   box-shadow: 5px 5px 15px 0px rgba(0,0,0,0.2);
+  position: relative;
 }
 
 .cartboxes .foot h3{
@@ -950,6 +951,28 @@ input[type=number] {
   width: 50px;
   text-align: center;
   color: rgb(8, 128, 38);
+}
+
+
+.cartboxes .foot .buttons #clearCart {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+}
+
+.cartboxes .emptycart {
+  width: 100%;
+  padding:20px;
+  background-color: white;
+  box-shadow: 5px 5px 15px 0px rgba(0,0,0,0.2);
+}
+
+.cartboxes .emptycart h1{
+  margin: 0;
+  font-size: 28px;
+  color: #4a4a4a;
+  padding: 10px 0px;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .cartboxes .cartbox .details h1 {
@@ -976,4 +999,8 @@ input[type=number] {
 
 .cartboxes .cartbox .details h3:not(:last-child) {
   border-bottom: .5px solid silver;
+}
+
+#ship_cost_label {
+  display: none;
 }

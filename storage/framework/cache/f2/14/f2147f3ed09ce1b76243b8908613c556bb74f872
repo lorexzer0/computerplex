@@ -1,4 +1,4 @@
-1576711466a:1:{s:12:"cartview.htm";a:10:{s:8:"fileName";s:12:"cartview.htm";s:7:"content";s:1966:"title = "Kosár tartalma"
+1576714899a:1:{s:12:"cartview.htm";a:10:{s:8:"fileName";s:12:"cartview.htm";s:7:"content";s:2340:"title = "Kosár tartalma"
 url = "/kosar"
 layout = "default"
 is_hidden = 0
@@ -11,7 +11,7 @@ is_hidden = 0
         {% partial 'box/categorylist' %} 
     </div>
     <div class="content product-content">
-        <section class="cartboxes">
+        <section class="cartboxes" id="shopping_cart">
             {% if cart.isNotEmpty %}
                 {% for item in cart %}
                     {% set offer = item.offer %}
@@ -27,8 +27,12 @@ is_hidden = 0
                     </div>
                     {% endfor %}
                 <div class="foot">
+                    <div class="buttons">
+                        <button class="btn btn-info w-15" id="clearCart">Kosár ürítése</button>
+                    </div>
                     <h3><i class="fas fa-shopping-cart"></i> Kosárban lévő termékek száma: <strong> {{ cart.getTotalQuantity() }} db</strong></h3>
-                    <h3><i class="fas fa-receipt"></i> Összesen: <strong>{{ cart.getTotalPrice|number_format(0,',','.') }} {{ cart.getCurrency() }}</strong></h3>
+                    <h3 id="ship_cost_label"><i class="fas fa-truck"></i> Szállítási költség: <strong><span id="ship_cost_nr"></span> Ft</strong></h3>
+                    <h3><i class="fas fa-receipt"></i> Összesen: <strong>{{ cart.getTotalPrice|number_format(0,',','.') }} {{ cart.getCurrency() }}</strong> + Szállítási költség</h3>
                 </div>
             {% else %}
             <div class="emptycart">
@@ -37,13 +41,13 @@ is_hidden = 0
             {% endif %}
         </section>
     </div>
-</div>";s:5:"mtime";i:1576710864;s:6:"markup";s:1874:"{% set cart = Cart.get() %}
+</div>";s:5:"mtime";i:1576714298;s:6:"markup";s:2248:"{% set cart = Cart.get() %}
 <div class="multibox">
     <div class="sidepanel">
         {% partial 'box/categorylist' %} 
     </div>
     <div class="content product-content">
-        <section class="cartboxes">
+        <section class="cartboxes" id="shopping_cart">
             {% if cart.isNotEmpty %}
                 {% for item in cart %}
                     {% set offer = item.offer %}
@@ -59,8 +63,12 @@ is_hidden = 0
                     </div>
                     {% endfor %}
                 <div class="foot">
+                    <div class="buttons">
+                        <button class="btn btn-info w-15" id="clearCart">Kosár ürítése</button>
+                    </div>
                     <h3><i class="fas fa-shopping-cart"></i> Kosárban lévő termékek száma: <strong> {{ cart.getTotalQuantity() }} db</strong></h3>
-                    <h3><i class="fas fa-receipt"></i> Összesen: <strong>{{ cart.getTotalPrice|number_format(0,',','.') }} {{ cart.getCurrency() }}</strong></h3>
+                    <h3 id="ship_cost_label"><i class="fas fa-truck"></i> Szállítási költség: <strong><span id="ship_cost_nr"></span> Ft</strong></h3>
+                    <h3><i class="fas fa-receipt"></i> Összesen: <strong>{{ cart.getTotalPrice|number_format(0,',','.') }} {{ cart.getCurrency() }}</strong> + Szállítási költség</h3>
                 </div>
             {% else %}
             <div class="emptycart">

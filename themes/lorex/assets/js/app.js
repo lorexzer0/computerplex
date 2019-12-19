@@ -175,3 +175,38 @@ $('#amountCart').click(function () {
         }
     })
 })
+
+$("#shopping_cart").ready(function () {
+    if(!$("#shopping_cart").length){
+        return;
+    }
+
+    $(this).request('Cart::onSetShippingType', {
+        'data': {'shipping_type_id': 2},
+        success: function(response) {
+            $('#ship_cost_nr').text(response.data.shipping_price.price);
+            $("#ship_cost_label").show();
+        }
+    });
+});
+
+$('#clearCart').click(function () {
+    $(this).request('onClear', {
+        update: {'shop/header-cart': $('#cartwrap')}
+    }).then(function() {
+        $.oc.flashMsg({
+            type: 'success',
+            interval: 3,
+            text: 'Kosár sikeresen kiürítve!'
+        });
+
+        setTimeout(function (){
+            location.reload();
+        },1000);
+        
+    })
+})
+
+function updateCart(response) {
+    console.log(response);
+}

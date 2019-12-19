@@ -1,0 +1,11 @@
+fields:
+    option1:
+        label: Raktáron
+        span: auto
+        type: switch
+        comment: 'Van-e helyileg raktáron?'
+    option2:
+        label: Option2
+        span: auto
+        type: switch
+        comment: Option2Comment

@@ -46,7 +46,7 @@ class __TwigTemplate_cc89f4d2f5e1ea283f0c99d14dad625dc88b3638e13b0b23f23599a2fcf
         echo " 
     </div>
     <div class=\"content product-content\">
-        <section class=\"cartboxes\">
+        <section class=\"cartboxes\" id=\"shopping_cart\">
             ";
         // line 8
         if (twig_get_attribute($this->env, $this->source, ($context["cart"] ?? null), "isNotEmpty", [], "any", false, false, false, 8)) {
@@ -97,26 +97,30 @@ class __TwigTemplate_cc89f4d2f5e1ea283f0c99d14dad625dc88b3638e13b0b23f23599a2fcf
             $context = array_intersect_key($context, $_parent) + $_parent;
             // line 22
             echo "                <div class=\"foot\">
+                    <div class=\"buttons\">
+                        <button class=\"btn btn-info w-15\" id=\"clearCart\">Kosár ürítése</button>
+                    </div>
                     <h3><i class=\"fas fa-shopping-cart\"></i> Kosárban lévő termékek száma: <strong> ";
-            // line 23
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["cart"] ?? null), "getTotalQuantity", [], "method", false, false, false, 23), "html", null, true);
+            // line 26
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["cart"] ?? null), "getTotalQuantity", [], "method", false, false, false, 26), "html", null, true);
             echo " db</strong></h3>
+                    <h3 id=\"ship_cost_label\"><i class=\"fas fa-truck\"></i> Szállítási költség: <strong><span id=\"ship_cost_nr\"></span> Ft</strong></h3>
                     <h3><i class=\"fas fa-receipt\"></i> Összesen: <strong>";
-            // line 24
-            echo twig_escape_filter($this->env, twig_number_format_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["cart"] ?? null), "getTotalPrice", [], "any", false, false, false, 24), 0, ",", "."), "html", null, true);
+            // line 28
+            echo twig_escape_filter($this->env, twig_number_format_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["cart"] ?? null), "getTotalPrice", [], "any", false, false, false, 28), 0, ",", "."), "html", null, true);
             echo " ";
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["cart"] ?? null), "getCurrency", [], "method", false, false, false, 24), "html", null, true);
-            echo "</strong></h3>
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["cart"] ?? null), "getCurrency", [], "method", false, false, false, 28), "html", null, true);
+            echo "</strong> + Szállítási költség</h3>
                 </div>
             ";
         } else {
-            // line 27
+            // line 31
             echo "            <div class=\"emptycart\">
                 <h1>Az ön kosara üres. Nézzen körül :)</h1>
             </div>
             ";
         }
-        // line 31
+        // line 35
         echo "        </section>
     </div>
 </div>";
@@ -134,7 +138,7 @@ class __TwigTemplate_cc89f4d2f5e1ea283f0c99d14dad625dc88b3638e13b0b23f23599a2fcf
 
     public function getDebugInfo()
     {
-        return array (  120 => 31,  114 => 27,  106 => 24,  102 => 23,  99 => 22,  87 => 18,  81 => 17,  77 => 16,  73 => 15,  68 => 13,  65 => 12,  62 => 11,  59 => 10,  54 => 9,  52 => 8,  43 => 4,  39 => 2,  37 => 1,);
+        return array (  124 => 35,  118 => 31,  110 => 28,  105 => 26,  99 => 22,  87 => 18,  81 => 17,  77 => 16,  73 => 15,  68 => 13,  65 => 12,  62 => 11,  59 => 10,  54 => 9,  52 => 8,  43 => 4,  39 => 2,  37 => 1,);
     }
 
     public function getSourceContext()
@@ -145,7 +149,7 @@ class __TwigTemplate_cc89f4d2f5e1ea283f0c99d14dad625dc88b3638e13b0b23f23599a2fcf
         {% partial 'box/categorylist' %} 
     </div>
     <div class=\"content product-content\">
-        <section class=\"cartboxes\">
+        <section class=\"cartboxes\" id=\"shopping_cart\">
             {% if cart.isNotEmpty %}
                 {% for item in cart %}
                     {% set offer = item.offer %}
@@ -161,8 +165,12 @@ class __TwigTemplate_cc89f4d2f5e1ea283f0c99d14dad625dc88b3638e13b0b23f23599a2fcf
                     </div>
                     {% endfor %}
                 <div class=\"foot\">
+                    <div class=\"buttons\">
+                        <button class=\"btn btn-info w-15\" id=\"clearCart\">Kosár ürítése</button>
+                    </div>
                     <h3><i class=\"fas fa-shopping-cart\"></i> Kosárban lévő termékek száma: <strong> {{ cart.getTotalQuantity() }} db</strong></h3>
-                    <h3><i class=\"fas fa-receipt\"></i> Összesen: <strong>{{ cart.getTotalPrice|number_format(0,',','.') }} {{ cart.getCurrency() }}</strong></h3>
+                    <h3 id=\"ship_cost_label\"><i class=\"fas fa-truck\"></i> Szállítási költség: <strong><span id=\"ship_cost_nr\"></span> Ft</strong></h3>
+                    <h3><i class=\"fas fa-receipt\"></i> Összesen: <strong>{{ cart.getTotalPrice|number_format(0,',','.') }} {{ cart.getCurrency() }}</strong> + Szállítási költség</h3>
                 </div>
             {% else %}
             <div class=\"emptycart\">

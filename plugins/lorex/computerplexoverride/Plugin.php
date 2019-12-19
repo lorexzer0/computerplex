@@ -54,6 +54,12 @@ class Plugin extends PluginBase
                     'label' => 'Átvehető a boltban',
                     'type' => 'switch',
                     'comment' => 'Átvehető a boltban?'
+                ],
+                'storagestatus[option3]' => [
+                    'tab' => 'Vaterafutár (FORCE)',
+                    'label' => 'Csak vaterafutárral való szállítás!',
+                    'type' => 'switch',
+                    'comment' => 'Kizárólag akkor lesz eredménye ha a kosárban lévő minden termék rendelkezik a tulajdonsággal.'
                 ]
             ]);
 
