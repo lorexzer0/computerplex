@@ -1,0 +1,165 @@
+title = "Bejelentkezés"
+url = "/bejelentkezes"
+layout = "default"
+is_hidden = 0
+
+[account]
+paramCode = "code"
+forceSecure = 0
+==
+<div class="multibox">
+  <div class="sidepanel">
+    {% partial 'box/categorylist' %}
+  </div>
+  <div class="content product-content">
+    <section class="basicmenu">
+      {% flash %}
+          <div class="alert alert-{{ type == 'error' ? 'danger' : type }}">{{ message }}</div>
+      {% endflash %}
+        {% if not user %}
+      <h1 class="title">Bejelentkezés/Regisztráció</h1>
+      <div class="content">
+        <ul class="nav nav-tabs" id="loginTabs" role="tablist">
+          <li class="nav-item">
+            <a
+              class="nav-link active"
+              id="login-tab"
+              data-toggle="tab"
+              href="#login"
+              role="tab"
+              aria-controls="login"
+              aria-selected="true"
+              >Bejelentkezés</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              id="register-tab"
+              data-toggle="tab"
+              href="#register"
+              role="tab"
+              aria-controls="register"
+              aria-selected="false"
+              >Regisztráció</a
+            >
+          </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+          <div
+            class="tab-pane fade show active"
+            id="login"
+            role="tabpanel"
+            aria-labelledby="login-tab"
+          >
+            {{ form_ajax('onSignin') }}
+
+            <div class="form-group">
+              <label for="userSigninLogin">{{ loginAttributeLabel }}</label>
+              <input
+                name="login"
+                type="text"
+                class="form-control"
+                id="userSigninLogin"
+                placeholder="Add meg az {{ loginAttributeLabel|lower }} címed"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="userSigninPassword">Jelszó</label>
+              <input
+                name="password"
+                type="password"
+                class="form-control"
+                id="userSigninPassword"
+                placeholder="Jelszó"
+              />
+            </div>
+
+            {% if rememberLoginMode == 'ask' %}
+            <div class="form-group">
+              <div class="checkbox">
+                <label
+                  ><input name="remember" type="checkbox" value="1" />Emlékezz
+                  rám!</label
+                >
+              </div>
+            </div>
+            {% endif %}
+
+            <button type="submit" class="btn btn-default">Bejelentkezés</button>
+
+            {{ form_close() }}
+          </div>
+          <div
+            class="tab-pane fade"
+            id="register"
+            role="tabpanel"
+            aria-labelledby="register-tab"
+          >
+            {% if canRegister %} 
+            {{ form_ajax('onRegister', {id: 'registerForm'}) }}
+
+            <div class="form-group">
+              <label for="registerName">Teljes név</label>
+              <input
+                name="name"
+                type="text"
+                class="form-control"
+                id="registerName"
+                placeholder="Add meg teljes neved"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="registerEmail">E-mail cím</label>
+              <input
+                name="email"
+                type="email"
+                class="form-control"
+                id="registerEmail"
+                placeholder="Email"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="registerPassword">Jelszó</label>
+              <input
+                name="password"
+                type="password"
+                class="form-control"
+                id="registerPassword"
+                placeholder="Jelszó"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="registerPasswordRepeat">Jelszó ismét</label>
+              <input
+                name="passwordRepeat"
+                type="password"
+                class="form-control"
+                id="registerPasswordRepeat"
+                placeholder="Jelszó ismét"
+              />
+            </div>
+
+            <button type="submit" class="btn btn-default">Regisztráció</button>
+
+            {{ form_close() }} {% else %}
+            <!-- Registration is disabled. -->
+            {% endif %}
+          </div>
+        </div>
+      </div>
+
+      {% else %}
+          
+        {# {% partial account ~ '::activation_check' %} 
+        {% partial account ~ '::update' %}
+        {% partial account ~ '::deactivate_link' %} #}
+        <h1>Kedves {{ user.name }}, ön jelenleg be van jelentkezve!</h1>
+      {% endif %}
+    </section>
+  </div>
+</div>

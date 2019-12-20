@@ -55,21 +55,29 @@ class __TwigTemplate_fa94d2ba71495e5924602e4fcbec240a17f4b6fd1fc2d83c8eaf17266f8
         // line 17
         if (($context["user"] ?? null)) {
             // line 18
-            echo "        <a href=\"\">
+            echo "        <a href=\"";
+            echo $this->extensions['Cms\Twig\Extension']->pageFilter("login");
+            echo "\">
           Felhasználóm
         </a>
+        <a data-request=\"onLogout\" data-request-data=\"redirect: '/'\"><i class=\"fas fa-sign-out-alt\"></i> Kijelentkezés</a>
         ";
         } else {
-            // line 22
-            echo "        <a href=\"\">
-          Bejelentkezés
+            // line 23
+            echo "        <a href=\"";
+            echo $this->extensions['Cms\Twig\Extension']->pageFilter("login");
+            echo "\">
+          Bejelentkezés / Regisztráció
         </a>
         ";
         }
-        // line 26
+        // line 27
         echo "      </div>
       <div class=\"currency\">
-        <strong>HUF</strong>
+        <strong>";
+        // line 29
+        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["Cart"] ?? null), "getCurrencyCode", [], "method", false, false, false, 29), "html", null, true);
+        echo "</strong>
       </div>
     </div>
   </div>
@@ -77,29 +85,29 @@ class __TwigTemplate_fa94d2ba71495e5924602e4fcbec240a17f4b6fd1fc2d83c8eaf17266f8
       <form class=\"form-inline col-sm-12 justify-content-center\">
       <div class=\"logo-wrap\">
           <img src=\"";
-        // line 35
+        // line 36
         echo $this->extensions['Cms\Twig\Extension']->themeFilter("assets/images/logo.png");
         echo "\" alt=\"\">
       </div>  
       <select class=\"custom-select d-inline\" id=\"categorySearchSelect\">
         <option selected>Minden Kategória</option>
         ";
-        // line 39
+        // line 40
         $context['_parent'] = $context;
         $context['_seq'] = twig_ensure_traversable(($context["categories"] ?? null));
         foreach ($context['_seq'] as $context["_key"] => $context["category"]) {
-            // line 40
+            // line 41
             echo "        <option value=\"";
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["category"], "id", [], "any", false, false, false, 40), "html", null, true);
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["category"], "id", [], "any", false, false, false, 41), "html", null, true);
             echo "\">";
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["category"], "name", [], "any", false, false, false, 40), "html", null, true);
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["category"], "name", [], "any", false, false, false, 41), "html", null, true);
             echo "</option>
         ";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['category'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 42
+        // line 43
         echo "      </select>
       <input
         class=\"form-control searchbar\"
@@ -111,15 +119,15 @@ class __TwigTemplate_fa94d2ba71495e5924602e4fcbec240a17f4b6fd1fc2d83c8eaf17266f8
         <i class=\"fas fa-search\"></i>
       </button>
       <div class=\"cart-wrap\" id=\"cartwrap\" onclick=\"window.location.href='";
-        // line 52
+        // line 53
         echo $this->extensions['Cms\Twig\Extension']->pageFilter("cartview");
         echo "'\">
           ";
-        // line 53
+        // line 54
         $context['__cms_partial_params'] = [];
         echo $this->env->getExtension('Cms\Twig\Extension')->partialFunction("shop/header-cart"        , $context['__cms_partial_params']        , true        );
         unset($context['__cms_partial_params']);
-        // line 54
+        // line 55
         echo "      </div>
     </form>
   </nav>
@@ -139,7 +147,7 @@ class __TwigTemplate_fa94d2ba71495e5924602e4fcbec240a17f4b6fd1fc2d83c8eaf17266f8
       <ul class=\"navbar-nav\">
         <li class=\"nav-item\">
           <a class=\"nav-link\" href=\"";
-        // line 72
+        // line 73
         echo $this->extensions['Cms\Twig\Extension']->pageFilter("home");
         echo "\">
             <i class=\"fas fa-home\"></i>  
@@ -147,32 +155,53 @@ class __TwigTemplate_fa94d2ba71495e5924602e4fcbec240a17f4b6fd1fc2d83c8eaf17266f8
         </li>
         <li class=\"nav-item\">
           <a class=\"nav-link\" href=\"";
-        // line 77
+        // line 78
         echo $this->extensions['Cms\Twig\Extension']->pageFilter("categorylist");
         echo "\">
             <i class=\"fas fa-list-ul\"></i>  
             Kategóriák</a>
         </li>
         <li class=\"nav-item\">
-          <a class=\"nav-link\" href=\"#\"><i class=\"fas fa-file-signature\"></i> ÁSZF</a>
+          <a class=\"nav-link\" href=\"";
+        // line 83
+        echo $this->extensions['Cms\Twig\Extension']->pageFilter("services");
+        echo "\"><i class=\"fas fa-clipboard-list\"></i> Szolgáltatásaink</a>
         </li>
         <li class=\"nav-item\">
-          <a class=\"nav-link\" href=\"#\"><i class=\"fas fa-shield-alt\"></i> Garancia</a>
+          <a class=\"nav-link\" href=\"";
+        // line 86
+        echo $this->extensions['Cms\Twig\Extension']->pageFilter("basicmenu", ["slug" => "aszf"]);
+        echo "\"><i class=\"fas fa-file-signature\"></i> ÁSZF</a>
         </li>
         <li class=\"nav-item\">
-          <a class=\"nav-link\" href=\"#\"><i class=\"fas fa-shipping-fast\"></i> Szállítás</a>
+          <a class=\"nav-link\" href=\"";
+        // line 89
+        echo $this->extensions['Cms\Twig\Extension']->pageFilter("basicmenu", ["slug" => "garancia"]);
+        echo "\"><i class=\"fas fa-shield-alt\"></i> Garancia</a>
         </li>
         <li class=\"nav-item\">
-          <a class=\"nav-link\" href=\"#\"><i class=\"fas fa-user-shield\"></i> Adatvédelem</a>
+          <a class=\"nav-link\" href=\"";
+        // line 92
+        echo $this->extensions['Cms\Twig\Extension']->pageFilter("basicmenu", ["slug" => "szallitas"]);
+        echo "\"><i class=\"fas fa-shipping-fast\"></i> Szállítás</a>
         </li>
         <li class=\"nav-item\">
-          <a class=\"nav-link\" href=\"#\"><i class=\"fas fa-clipboard-list\"></i> Szolgáltatásaink</a>
+          <a class=\"nav-link\" href=\"";
+        // line 95
+        echo $this->extensions['Cms\Twig\Extension']->pageFilter("basicmenu", ["slug" => "adatvedelem"]);
+        echo "\"><i class=\"fas fa-user-shield\"></i> Adatvédelem</a>
+        </li>        
+        <li class=\"nav-item\">
+          <a class=\"nav-link\" href=\"";
+        // line 98
+        echo $this->extensions['Cms\Twig\Extension']->pageFilter("basicmenu", ["slug" => "nyitvatartas"]);
+        echo "\"><i class=\"fas fa-calendar-alt\"></i> Nyitva tartás</a>
         </li>
         <li class=\"nav-item\">
-          <a class=\"nav-link\" href=\"#\"><i class=\"fas fa-calendar-alt\"></i> Nyitvatartás</a>
-        </li>
-        <li class=\"nav-item\">
-          <a class=\"nav-link\" href=\"#\"><i class=\"far fa-address-card\"></i> Kapcsolat</a>
+          <a class=\"nav-link\" href=\"";
+        // line 101
+        echo $this->extensions['Cms\Twig\Extension']->pageFilter("contact");
+        echo "\"><i class=\"far fa-address-card\"></i> Kapcsolat</a>
         </li>
       </ul>
     </div>
@@ -192,7 +221,7 @@ class __TwigTemplate_fa94d2ba71495e5924602e4fcbec240a17f4b6fd1fc2d83c8eaf17266f8
 
     public function getDebugInfo()
     {
-        return array (  151 => 77,  143 => 72,  123 => 54,  119 => 53,  115 => 52,  103 => 42,  92 => 40,  88 => 39,  81 => 35,  70 => 26,  64 => 22,  58 => 18,  56 => 17,  39 => 2,  37 => 1,);
+        return array (  203 => 101,  197 => 98,  191 => 95,  185 => 92,  179 => 89,  173 => 86,  167 => 83,  159 => 78,  151 => 73,  131 => 55,  127 => 54,  123 => 53,  111 => 43,  100 => 41,  96 => 40,  89 => 36,  79 => 29,  75 => 27,  67 => 23,  58 => 18,  56 => 17,  39 => 2,  37 => 1,);
     }
 
     public function getSourceContext()
@@ -214,17 +243,18 @@ class __TwigTemplate_fa94d2ba71495e5924602e4fcbec240a17f4b6fd1fc2d83c8eaf17266f8
     <div class=\"right\">
       <div class=\"header-login\">
         {% if user %}
-        <a href=\"\">
+        <a href=\"{{ 'login'|page }}\">
           Felhasználóm
         </a>
+        <a data-request=\"onLogout\" data-request-data=\"redirect: '/'\"><i class=\"fas fa-sign-out-alt\"></i> Kijelentkezés</a>
         {% else %}
-        <a href=\"\">
-          Bejelentkezés
+        <a href=\"{{ 'login'|page }}\">
+          Bejelentkezés / Regisztráció
         </a>
         {% endif %}
       </div>
       <div class=\"currency\">
-        <strong>HUF</strong>
+        <strong>{{ Cart.getCurrencyCode() }}</strong>
       </div>
     </div>
   </div>
@@ -278,25 +308,25 @@ class __TwigTemplate_fa94d2ba71495e5924602e4fcbec240a17f4b6fd1fc2d83c8eaf17266f8
             Kategóriák</a>
         </li>
         <li class=\"nav-item\">
-          <a class=\"nav-link\" href=\"#\"><i class=\"fas fa-file-signature\"></i> ÁSZF</a>
+          <a class=\"nav-link\" href=\"{{ 'services'|page }}\"><i class=\"fas fa-clipboard-list\"></i> Szolgáltatásaink</a>
         </li>
         <li class=\"nav-item\">
-          <a class=\"nav-link\" href=\"#\"><i class=\"fas fa-shield-alt\"></i> Garancia</a>
+          <a class=\"nav-link\" href=\"{{ 'basicmenu'|page({slug:'aszf'})}}\"><i class=\"fas fa-file-signature\"></i> ÁSZF</a>
         </li>
         <li class=\"nav-item\">
-          <a class=\"nav-link\" href=\"#\"><i class=\"fas fa-shipping-fast\"></i> Szállítás</a>
+          <a class=\"nav-link\" href=\"{{ 'basicmenu'|page({slug:'garancia'})}}\"><i class=\"fas fa-shield-alt\"></i> Garancia</a>
         </li>
         <li class=\"nav-item\">
-          <a class=\"nav-link\" href=\"#\"><i class=\"fas fa-user-shield\"></i> Adatvédelem</a>
+          <a class=\"nav-link\" href=\"{{ 'basicmenu'|page({slug:'szallitas'})}}\"><i class=\"fas fa-shipping-fast\"></i> Szállítás</a>
         </li>
         <li class=\"nav-item\">
-          <a class=\"nav-link\" href=\"#\"><i class=\"fas fa-clipboard-list\"></i> Szolgáltatásaink</a>
+          <a class=\"nav-link\" href=\"{{ 'basicmenu'|page({slug:'adatvedelem'})}}\"><i class=\"fas fa-user-shield\"></i> Adatvédelem</a>
+        </li>        
+        <li class=\"nav-item\">
+          <a class=\"nav-link\" href=\"{{ 'basicmenu'|page({slug:'nyitvatartas'})}}\"><i class=\"fas fa-calendar-alt\"></i> Nyitva tartás</a>
         </li>
         <li class=\"nav-item\">
-          <a class=\"nav-link\" href=\"#\"><i class=\"fas fa-calendar-alt\"></i> Nyitvatartás</a>
-        </li>
-        <li class=\"nav-item\">
-          <a class=\"nav-link\" href=\"#\"><i class=\"far fa-address-card\"></i> Kapcsolat</a>
+          <a class=\"nav-link\" href=\"{{ 'contact'|page }}\"><i class=\"far fa-address-card\"></i> Kapcsolat</a>
         </li>
       </ul>
     </div>

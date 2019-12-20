@@ -32,21 +32,36 @@ function onEnd()
             {% if products.isNotEmpty() %}
                 {% for product in products %}
                 {% set offer = product.offer.first() %}
-                <div class="productbox" data-id="{{ product.id }}" onclick="window.location.href='{{ 'productpage'|page({slug: product.slug}) }}'">
-                    <div class="hero" style="background-image: url({{ product.preview_image | resize(false, 252, { quality: '95', extension: 'png' }) }});">
-                        {% if offer.discount_price > 0 %}
-                        <span><i class="fas fa-tag"></i> Akció! -{{ ((offer.discount_price / offer.old_price)*100)|number_format(0,'.',',') }} %</span>
-                        {% endif %}
-                    </div>
-                    <h1>{{ product.name }}</h1>
-                    <div class="details">
-                        <div class="detail">
-                            <i class="fas fa-pallet" style="color: #f6a416"></i> Raktáron <strong>{{ offer.quantity }}</strong> db
+                {% set status = product.getObject().storagestatus %}
+                <div class="productbox" data-id="{{ product.id }}">
+                    <div class="main-wrap" onclick="window.location.href='{{ 'productpage'|page({slug: product.slug}) }}'">
+                        <div class="badges">
+                            {% if status.raktaron %}
+                            <span class="rbadge">
+                                <i class="fas fa-pallet"></i> Rendelhető
+                            </span>
+                            {% endif %}
+                            {% if status.szemelyesen %}
+                            <span class="gbadge">
+                                <i class="fas fa-box-open"></i> Személyesen átvehető
+                            </span>
+                            {% endif %}
                         </div>
-                        <div class="detail">
-                            <i class="fas fa-money-bill" style="color:green"></i> <strong>{{ offer.price|number_format(0,',','.') }}</strong> {{ offer.currency }}
-                        </div>                        
-                    </div>                              
+                        <div class="hero" style="background-image: url({{ product.preview_image | resize(false, 252, { quality: '95', extension: 'png' }) }});">
+                            {% if offer.discount_price > 0 %}
+                            <span><i class="fas fa-tag"></i> Akció! -{{ ((offer.discount_price / offer.old_price)*100)|number_format(0,'.',',') }} %</span>
+                            {% endif %}
+                        </div>
+                        <h1>{{ product.name }}</h1>
+                        <div class="details">
+                            <div class="detail">
+                                <i class="fas fa-pallet" style="color: #f6a416"></i> Raktáron <strong>{{ offer.quantity }}</strong> db
+                            </div>
+                            <div class="detail">
+                                <i class="fas fa-money-bill" style="color:green"></i> <strong>{{ offer.price|number_format(0,',','.') }}</strong> {{ offer.currency }}
+                            </div>                        
+                        </div>                    
+                    </div>             
                 </div>
                 {% endfor %}
             {% endif %}

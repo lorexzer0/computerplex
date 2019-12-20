@@ -1,0 +1,240 @@
+1576885924a:1:{s:13:"orderpage.htm";a:13:{s:8:"fileName";s:13:"orderpage.htm";s:7:"content";s:6995:"title = "Rendelés"
+url = "/rendeles"
+layout = "default"
+is_hidden = 0
+
+[Cart]
+
+[MakeOrder]
+mode = "ajax"
+flash_on = 1
+
+[PaymentMethodList]
+
+[ShippingTypeList]
+==
+<?php
+function onEnd(){
+    $cart = $this->Cart->get();
+    if(count($cart) == 0){
+        return Redirect::to('/');
+    }
+}
+?>
+==
+{% set cart = Cart.get() %}
+
+<div class="multibox">
+    <div class="sidepanel">
+        {% partial 'box/categorylist' %} 
+    </div>
+    <div class="content product-content">
+        <section class="orderpage">
+            <div class="multiblock">
+                <div class="form">
+                    <form id="orderForm">
+                        <h2>Megrendelő</h2>
+
+                        <div class="form-group">
+                            <label for="fullname">Átvevő teljes neve:</label>
+                            <input type="text" name="fullname" class="form-control" placeholder="Teljes név" value="{{ user.name }}" disabled required>
+                        </div>
+                        <div class="form-group">                            
+                            <label for="email">E-mail cím:</label>
+                            <input type="email" name="email" class="form-control" placeholder="E-mail cím" value="{{user.email}}" disabled required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Telefonszám:</label>
+                            <input type="text" name="phone" class="form-control" placeholder="Telefonszám" required>
+                        </div>
+                        <hr>
+                        <h2>Szállítási cím</h2>
+                        <div class="form-group">
+                            <label for="phone">Megye:</label>
+                            <input type="text" name="state" class="form-control" placeholder="Megye" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Város:</label>
+                            <input type="text" name="city" class="form-control" placeholder="Város" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Irányítószám:</label>
+                            <input type="number" name="postcode" class="form-control" placeholder="Irányítószám" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Utca:</label>
+                            <input type="text" name="street" class="form-control" placeholder="Utca" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Házszám / Lakás szám:</label>
+                            <input type="text" name="housenumber" class="form-control" placeholder="Házszám / Lakás szám" required>
+                        </div>
+                        {# <!-- ADDRESS1 / ADDRESS 2 OPTIONS  -->
+                        <div class="form-group">
+                            <label for="phone">Cím 1:</label>
+                            <input type="text" name="address1" class="form-control" placeholder="Cím 1">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Cím 2:</label>
+                            <input type="text" name="address2" class="form-control" placeholder="Cím 2">
+                        </div> #}
+                        <hr>
+                        <h2>Fizetési mód</h2>
+                        {% set payments = PaymentMethodList.make().sort().active() %}
+                        {% if payments.isNotEmpty() %}
+                        {% for payment in payments %}
+                            <div class="payment-method-list-wrapper">
+                                <input type="radio" name="payment" value="{{ payment.id }}" {% if loop.first %}checked{% endif %}>
+                                <label for="payment">{{ payment.name }}</label>
+                            </div>
+                        {% endfor %}
+                        {% endif %}
+                        <hr>
+                        <h2>Szállítási mód</h2>
+                        {% set shippings = ShippingTypeList.make().sort().active() %}
+                        {% if shippings.isNotEmpty() %}
+                        {% for shipping in shippings if shipping.id == 2 %}
+                            <div class="payment-method-list-wrapper">
+                                <input type="radio" name="shipping" value="{{ shipping.id }}" {% if loop.first %}checked{% endif %}>
+                                <label for="shipping">{{ shipping.name }}</label>
+                            </div>
+                        {% endfor %}
+                        {% endif %}
+                        <hr>
+                        <button type="submit" class="btn btn-success btn-block">Rendelés leadása</button>
+                    </form>
+                </div>
+                <div class="data">
+                    <div class="head">
+                        <h2>Összesítés:</h2>
+                        {% for item in cart %}
+                            {% set offer = item.offer %}
+                            {% set product = offer.product %}
+                            <div class="summarybox">
+                                <img src="{{ product.preview_image | resize(75, false, { quality: '70', mode: 'crop', extension: 'png' }) }}" alt="">
+                                <h2>{{ product.name }} <span>{{ item.quantity }}</span></h2>
+                                <h3 class="price">Összesen(bruttó): <strong>{{ item.price_with_tax | number_format(0) }} {{ item.currency }}</strong></h3>                                
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div class="foot">                        
+                        <h3><i class="fas fa-shopping-cart"></i> Kosárban lévő termékek száma: <strong> {{ cart.getTotalQuantity() }} db</strong></h3>
+                        <h3><i class="fas fa-truck"></i> Szállítási költség: <strong><span id="ship_cost_nr">1700</span> Ft</strong></h3>
+                        <h3><i class="fas fa-receipt"></i> Összesen(nettó): <strong>{{ cart.getTotalPrice|number_format(0,',','.') }} {{ cart.getCurrency() }}</strong> + Szállítási költség</h3>
+                        <h3><i class="fas fa-receipt"></i> Összesen(bruttó): <strong>{{ (cart.getTotalPrice + cart.getTotalPrice*0.27)|number_format(0,',','.') }} {{ cart.getCurrency() }}</strong> + Szállítási költség</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>";s:5:"mtime";i:1576883643;s:6:"markup";s:6677:"{% set cart = Cart.get() %}
+
+<div class="multibox">
+    <div class="sidepanel">
+        {% partial 'box/categorylist' %} 
+    </div>
+    <div class="content product-content">
+        <section class="orderpage">
+            <div class="multiblock">
+                <div class="form">
+                    <form id="orderForm">
+                        <h2>Megrendelő</h2>
+
+                        <div class="form-group">
+                            <label for="fullname">Átvevő teljes neve:</label>
+                            <input type="text" name="fullname" class="form-control" placeholder="Teljes név" value="{{ user.name }}" disabled required>
+                        </div>
+                        <div class="form-group">                            
+                            <label for="email">E-mail cím:</label>
+                            <input type="email" name="email" class="form-control" placeholder="E-mail cím" value="{{user.email}}" disabled required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Telefonszám:</label>
+                            <input type="text" name="phone" class="form-control" placeholder="Telefonszám" required>
+                        </div>
+                        <hr>
+                        <h2>Szállítási cím</h2>
+                        <div class="form-group">
+                            <label for="phone">Megye:</label>
+                            <input type="text" name="state" class="form-control" placeholder="Megye" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Város:</label>
+                            <input type="text" name="city" class="form-control" placeholder="Város" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Irányítószám:</label>
+                            <input type="number" name="postcode" class="form-control" placeholder="Irányítószám" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Utca:</label>
+                            <input type="text" name="street" class="form-control" placeholder="Utca" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Házszám / Lakás szám:</label>
+                            <input type="text" name="housenumber" class="form-control" placeholder="Házszám / Lakás szám" required>
+                        </div>
+                        {# <!-- ADDRESS1 / ADDRESS 2 OPTIONS  -->
+                        <div class="form-group">
+                            <label for="phone">Cím 1:</label>
+                            <input type="text" name="address1" class="form-control" placeholder="Cím 1">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Cím 2:</label>
+                            <input type="text" name="address2" class="form-control" placeholder="Cím 2">
+                        </div> #}
+                        <hr>
+                        <h2>Fizetési mód</h2>
+                        {% set payments = PaymentMethodList.make().sort().active() %}
+                        {% if payments.isNotEmpty() %}
+                        {% for payment in payments %}
+                            <div class="payment-method-list-wrapper">
+                                <input type="radio" name="payment" value="{{ payment.id }}" {% if loop.first %}checked{% endif %}>
+                                <label for="payment">{{ payment.name }}</label>
+                            </div>
+                        {% endfor %}
+                        {% endif %}
+                        <hr>
+                        <h2>Szállítási mód</h2>
+                        {% set shippings = ShippingTypeList.make().sort().active() %}
+                        {% if shippings.isNotEmpty() %}
+                        {% for shipping in shippings if shipping.id == 2 %}
+                            <div class="payment-method-list-wrapper">
+                                <input type="radio" name="shipping" value="{{ shipping.id }}" {% if loop.first %}checked{% endif %}>
+                                <label for="shipping">{{ shipping.name }}</label>
+                            </div>
+                        {% endfor %}
+                        {% endif %}
+                        <hr>
+                        <button type="submit" class="btn btn-success btn-block">Rendelés leadása</button>
+                    </form>
+                </div>
+                <div class="data">
+                    <div class="head">
+                        <h2>Összesítés:</h2>
+                        {% for item in cart %}
+                            {% set offer = item.offer %}
+                            {% set product = offer.product %}
+                            <div class="summarybox">
+                                <img src="{{ product.preview_image | resize(75, false, { quality: '70', mode: 'crop', extension: 'png' }) }}" alt="">
+                                <h2>{{ product.name }} <span>{{ item.quantity }}</span></h2>
+                                <h3 class="price">Összesen(bruttó): <strong>{{ item.price_with_tax | number_format(0) }} {{ item.currency }}</strong></h3>                                
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div class="foot">                        
+                        <h3><i class="fas fa-shopping-cart"></i> Kosárban lévő termékek száma: <strong> {{ cart.getTotalQuantity() }} db</strong></h3>
+                        <h3><i class="fas fa-truck"></i> Szállítási költség: <strong><span id="ship_cost_nr">1700</span> Ft</strong></h3>
+                        <h3><i class="fas fa-receipt"></i> Összesen(nettó): <strong>{{ cart.getTotalPrice|number_format(0,',','.') }} {{ cart.getCurrency() }}</strong> + Szállítási költség</h3>
+                        <h3><i class="fas fa-receipt"></i> Összesen(bruttó): <strong>{{ (cart.getTotalPrice + cart.getTotalPrice*0.27)|number_format(0,',','.') }} {{ cart.getCurrency() }}</strong> + Szállítási költség</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>";s:4:"code";s:123:"function onEnd(){
+    $cart = $this->Cart->get();
+    if(count($cart) == 0){
+        return Redirect::to('/');
+    }
+}";s:5:"title";s:9:"Rendelés";s:3:"url";s:9:"/rendeles";s:6:"layout";s:7:"default";s:9:"is_hidden";s:1:"0";s:4:"Cart";a:0:{}s:9:"MakeOrder";a:2:{s:4:"mode";s:4:"ajax";s:8:"flash_on";s:1:"1";}s:17:"PaymentMethodList";a:0:{}s:16:"ShippingTypeList";a:0:{}}}

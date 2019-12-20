@@ -4,8 +4,22 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit0af9e9214f8fd8da640aa72213b69317
+class ComposerStaticInitc4f135bd10b4cd4f5fd33f985831d1bd
 {
+    public static $prefixLengthsPsr4 = array (
+        'K' => 
+        array (
+            'Kharanenka\\Helper\\' => 18,
+        ),
+    );
+
+    public static $prefixDirsPsr4 = array (
+        'Kharanenka\\Helper\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/kharanenka/php-result-store/src/Kharanenka/Helper',
+        ),
+    );
+
     public static $prefixesPsr0 = array (
         'K' => 
         array (
@@ -23,10 +37,6 @@ class ComposerStaticInit0af9e9214f8fd8da640aa72213b69317
                 9 => __DIR__ . '/..' . '/kharanenka/laravel-scope-type/src',
                 10 => __DIR__ . '/..' . '/kharanenka/laravel-scope-user-belongs-to/src',
             ),
-            'Kharanenka\\Result\\' => 
-            array (
-                0 => __DIR__ . '/..' . '/kharanenka/php-result-store/src',
-            ),
             'Kharanenka\\Helper\\' => 
             array (
                 0 => __DIR__ . '/..' . '/kharanenka/laravel-cache-helper/src',
@@ -42,8 +52,6 @@ class ComposerStaticInit0af9e9214f8fd8da640aa72213b69317
         'Kharanenka\\Helper\\DataFileModel' => __DIR__ . '/..' . '/kharanenka/oc-data-file-model/src/Kharanenka/Helper/DataFileModel.php',
         'Kharanenka\\Helper\\Pagination' => __DIR__ . '/..' . '/kharanenka/oc-pagination/src/Kharanenka/Helper/Pagination.php',
         'Kharanenka\\Helper\\PaginationHelper' => __DIR__ . '/..' . '/kharanenka/php-pagination/src/Kharanenka/Helper/PaginationHelper.php',
-        'Kharanenka\\Helper\\Result' => __DIR__ . '/..' . '/kharanenka/php-result-store/src/Kharanenka/Helper/Result.php',
-        'Kharanenka\\Helper\\ResultStore' => __DIR__ . '/..' . '/kharanenka/php-result-store/src/Kharanenka/Helper/ResultStore.php',
         'Kharanenka\\Scope\\ActiveField' => __DIR__ . '/..' . '/kharanenka/laravel-scope-active/src/Kharanenka/Scope/ActiveField.php',
         'Kharanenka\\Scope\\CategoryBelongsTo' => __DIR__ . '/..' . '/kharanenka/laravel-scope-category-belongs-to/src/Kharanenka/Scope/CategoryBelongsTo.php',
         'Kharanenka\\Scope\\CodeField' => __DIR__ . '/..' . '/kharanenka/laravel-scope-code/src/Kharanenka/Scope/CodeField.php',
@@ -60,8 +68,10 @@ class ComposerStaticInit0af9e9214f8fd8da640aa72213b69317
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixesPsr0 = ComposerStaticInit0af9e9214f8fd8da640aa72213b69317::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit0af9e9214f8fd8da640aa72213b69317::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitc4f135bd10b4cd4f5fd33f985831d1bd::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitc4f135bd10b4cd4f5fd33f985831d1bd::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInitc4f135bd10b4cd4f5fd33f985831d1bd::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInitc4f135bd10b4cd4f5fd33f985831d1bd::$classMap;
 
         }, null, ClassLoader::class);
     }

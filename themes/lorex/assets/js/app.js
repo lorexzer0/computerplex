@@ -141,6 +141,16 @@ $('#amountCart').click(function () {
                 }
             }
 
+
+            if(quantity > (maxq-current_quantity)){
+                $.oc.flashMsg({
+                    type: 'error',
+                    interval: 3,
+                    text: 'Nincs ennyi termék raktáron!'
+                })
+                return;
+            }
+
             quantity = +quantity + current_quantity;
 
             var adddata = {
@@ -207,6 +217,144 @@ $('#clearCart').click(function () {
     })
 })
 
+$(window).scroll(function (e) {
+    var eh = $('.data').height();
+    var offset = $(document).scrollTop();
+    var offsetbot = $(document).height() - offset;
+    // console.log(offset);
+    // console.log((offset+eh),offsetbot,eh);
+    if(offset > 300 && offsetbot > (offset + eh)){
+        $('.data').css('top',(+offset-250));
+    }
+})
+
+function removeOffer(offerid,elem) {
+    var removedata = {
+        'cart': [offerid]
+    }
+
+    $(this).request('onRemove', {
+        data: removedata,
+        update: {'shop/header-cart': $('#cartwrap'), 'shop/cartfoot': $("#cartfootwrap")}
+    }).then(function () {
+        $.oc.flashMsg({
+            type: 'success',
+            interval: 3,
+            text: 'A terméket sikeresen eltávolítottuk kosarából!'
+        });
+
+        $(elem).parent().parent().remove();
+        var leftover = $("#shopping_cart").find('.cartbox').length;
+        console.log(leftover)
+        if(leftover === 0){
+            location.reload();
+        }
+    })
+}
+
 function updateCart(response) {
     console.log(response);
 }
+
+
+$('.servicepage .prices .pricebox').each(function(index,element) {
+    $(element).click(function() {
+        $(this).toggleClass('active');
+        var cc = $(this).parent().find('.dropdown');
+
+        if($(cc).css('display') === 'none'){
+            $(cc).toggle();
+            $(cc).animate({maxHeight:`2000px`},300);
+        }else {
+            $(cc).animate({maxHeight:"0px"},300, function() {
+                $(cc).toggle();
+            });
+        }
+    })
+})
+
+$('#contactForm').submit(function (e) {
+    e.preventDefault();
+
+    $(this).request('onContactMailSend', {
+        success: data => {
+            $.oc.flashMsg({
+                text: "Üzenetét sikeresen megkaptuk!",
+                type: "success",
+                interval: 3
+            })
+        }
+    })
+    $(this).find("input[type=text], input[type=email], textarea").val("");
+})
+
+$('#orderForm').submit(function (e) {
+    e.preventDefault();
+    var $inputs = $('#orderForm :input[type=text], #orderForm :input[type=email],#orderForm :input[type=radio]:checked, #orderForm :input[type=number]');
+
+    var values = {};
+    $inputs.each(function () {
+        // console.log($(this));
+        if(values[this.name] && $(this).is(':checked')){
+            values[this.name] = $(this).val();            
+        }else {
+            values[this.name] = $(this).val();
+        }
+    });
+
+    console.log(values);
+
+    var data = {
+        'order': {
+            'payment_method_id': values['payment'],
+            'shipping_type_id': 2,
+            'shipping_price': 1700,            
+        },
+        'user': {
+            'email': values['email'],
+            'name': values['fullname']
+        },
+        'billing_address': {
+            'country': "Magyarország",
+            'state': values['state'],
+            'postcode': values['postcode'],
+            'street': values['street'],
+            'house': values['housenumber'],
+            'city': values['city']
+        },
+        'shipping_address': {
+            'country': "Magyarország",
+            'state': values['state'],
+            'postcode': values['postcode'],
+            'street': values['street'],
+            'house': values['housenumber'],
+            'city': values['city']
+        }
+    }
+
+    $.request('MakeOrder::onCreate', {
+        data: data,
+        success: result => {
+            $.oc.flashMsg({
+                interval:3,
+                type: 'success',
+                text: "Rendelését sikeresen fogadtuk!"
+            });
+            location.reload();            
+        }
+    });
+})
+
+$(window).on('ajaxErrorMessage', function(event, message){
+
+    // This can be any custom JavaScript you want
+    $.oc.flashMsg({
+        text: message,
+        type: 'error',
+        interval: 5
+    });
+
+    // This will stop the default alert() message
+    event.preventDefault();
+
+})

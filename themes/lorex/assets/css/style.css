@@ -330,6 +330,55 @@ a:focus-within {
   cursor: pointer;
   background-size: auto 90%;
 }
+.promotional .productlist .product .badges {
+  position: absolute;
+  width: 100%;
+  pointer-events: none;
+  height: 100%;
+}
+
+.promotional .productlist .product .badges span {
+  position: absolute;
+  right: 10px;
+  width: 150px;
+  height: 35px;
+  padding: 5px;
+  transform: translateY(-50%);
+  color: white;
+  font-family: 'Open Sans', sans-serif;
+  opacity: .7;
+}
+
+.promotional .productlist .product .badges span:only-child {
+  top:55%;
+}
+
+.promotional .productlist .product .badges span::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -20px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 17.5px 20px 17.5px 0;  
+  border-color: transparent rgb(66, 92, 238) transparent transparent;
+}
+
+.promotional .productlist .product .badges .rbadge {
+  top:45%;
+  background-color: rgb(66, 92, 238);
+}
+
+.promotional .productlist .product .badges .gbadge {
+  top:55%;
+  width: 210px;
+  background-color: rgb(8, 128, 38);
+}
+
+.promotional .productlist .product .badges .gbadge::before {  
+  border-color: transparent rgb(8, 128, 38) transparent transparent;
+}
 
 .promotional .productlist .product .hero {
   background-size: auto 75%;
@@ -606,6 +655,7 @@ a:focus-within {
   border-radius: 4px;
   box-shadow: 5px 5px 15px 0px rgba(0,0,0,0.2);
   transition: box-shadow ease-in-out 300ms;  
+  position: relative;
 }
 
 .productboxes .productbox:hover {
@@ -613,12 +663,69 @@ a:focus-within {
   cursor: pointer;
 }
 
+.productboxes .productbox .main-wrap {
+  height: 70%;
+  width: 100%;
+}
+
+.productboxes .productbox .badges {
+  position: absolute;
+  width: 100%;
+  pointer-events: none;
+  height: 100%;
+  z-index: 1;
+}
+
+.productboxes .productbox .badges span {
+  position: absolute;
+  right: 10px;
+  width: 150px;
+  height: 35px;
+  padding: 5px;
+  transform: translateY(-50%);
+  color: white;
+  font-family: 'Open Sans', sans-serif;
+  opacity: .7;
+}
+
+
+.productboxes .productbox .badges span:only-child {
+  top:55%;
+}
+
+.productboxes .productbox .badges span::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -20px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 17.5px 20px 17.5px 0;  
+  border-color: transparent rgb(66, 92, 238) transparent transparent;
+}
+
+.productboxes .productbox .badges .rbadge {
+  top:45%;
+  background-color: rgb(66, 92, 238);
+}
+
+.productboxes .productbox  .badges .gbadge {
+  top:55%;
+  width: 210px;
+  background-color: rgb(8, 128, 38);
+}
+
+.productboxes .productbox .badges .gbadge::before {  
+  border-color: transparent rgb(8, 128, 38) transparent transparent;
+}
+
 .productboxes .productbox .hero {
   position: relative;
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-  height: 70%;
+  height: 100%;
   width: 80%;
   margin: 0 auto;
 }
@@ -907,7 +1014,39 @@ input[type=number] {
   flex-wrap: wrap;
   padding:20px;
   background-color: white;
+  position: relative;
   box-shadow: 5px 5px 15px 0px rgba(0,0,0,0.2);
+}
+
+.cartboxes .cartbox .buttons{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top:0;
+  left:0;
+}
+
+.cartboxes .cartbox .buttons .closebtn {
+  background-color: whitesmoke;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 22px;
+  color: #333333;
+  padding: 10px 12px;
+  line-height: 22px;
+  outline: none;
+  border: none;
+  height: 40px;
+  width: 40px;
+  position: absolute;
+  top:15px;
+  right: 15px;
+  transition: background-color ease-in-out 100ms;
+}
+
+.cartboxes .cartbox .buttons .closebtn:hover {
+  background-color: #cecece;
+  cursor: pointer;
 }
 
 .cartboxes .cartbox:not(:last-child) {
@@ -960,6 +1099,12 @@ input[type=number] {
   top: 20px;
 }
 
+.cartboxes .foot .buttons #goToOrder {
+  position: absolute;
+  right: 20px;
+  top: 70px;
+}
+
 .cartboxes .emptycart {
   width: 100%;
   padding:20px;
@@ -1003,4 +1148,381 @@ input[type=number] {
 
 #ship_cost_label {
   display: none;
+}
+
+/* BASIC MENU TEMPLATE */
+
+.basicmenu {
+  width: 100%;
+  height: 100%  ;
+  background-color: white;
+  padding:30px;
+}
+
+.basicmenu .title {
+  font-family: 'Open Sans', 'Roboto', sans-serif;
+  text-align: center;
+}
+
+.basicmenu .content {
+  padding: 10px;
+  width: 100%;
+  height: max-content;
+  margin-top: 30px;
+}
+
+.basicmenu .content p {
+  text-align: justify;
+}
+
+.basicmenu .content table {
+  min-width: 50%;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.basicmenu .content table tr {
+  background-color: white;
+  text-align: center;
+}
+
+.basicmenu .content table tr:nth-child(odd){
+  background-color: #f5f5f5;  
+}
+
+.basicmenu .content table tr td{
+  padding: 10px;
+  text-align: center;
+  color: #4a4a4a;
+}
+
+.basicmenu .content table tr td:not(:first-child){
+  font-weight: bold;
+  color: black;
+}
+
+/* Szolgáltatások menüpont */
+
+.servicepage {
+  width: 100%;
+  height: max-content;
+  padding: 30px;
+  background-color: white;
+}
+
+.servicepage > h1 {
+  font-family: 'Open Sans', 'Roboto', sans-serif;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 60px;
+  font-weight: bold;
+}
+
+.servicepage .services {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 80%;
+  height: max-content;
+  position: relative;
+  justify-content: space-around;
+  left: 50%;
+  transform: translateX(-50%);
+} 
+
+.servicepage .services .servicebox {
+  width: 30%;
+  min-height: 200px;
+}
+
+.servicepage .services .servicebox h2 {
+  font-family: 'Open Sans', 'Roboto', sans-serif;
+  color: #d38d15;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.servicepage .services .servicebox h2 i{
+  color: #333333;
+  font-size: 18px;
+  margin-right: 10px;
+}
+
+.servicepage .services .servicebox p{
+  text-align: justify;
+  font-family: 'Open Sans', 'Roboto', sans-serif;
+  color: #4a4a4a;
+}
+
+.servicepage .prices {
+  display: flex;
+  flex-direction: column;
+}
+
+.servicepage .prices .pricebox {
+  background-color: #d38d15;  
+  width: 100%;
+  min-height: 75px;
+  padding: 20px;
+  transition: background-color ease-in-out 200ms;
+}
+
+.servicepage .prices .pricebox:hover {
+  background-color: #a87111;
+  cursor: pointer;
+}
+
+.servicepage .prices .pricebox.active {  
+  background-color: #a87111;
+}
+
+.servicepage .prices .pricebox > h1 {
+  color: whitesmoke;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  font-family: 'Open Sans', 'Roboto', sans-serif;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 26px;
+  font-weight: bold;
+}
+
+.servicepage .prices .pricebox > h1::after {  
+  display: inline-block;
+  content:'\f054';
+  margin-left: 20px;
+  color: #333333;
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+  transition: all ease-in-out 300ms;
+}
+
+.servicepage .prices .pricebox.active > h1::after {
+  transform: rotate(90deg);
+}
+
+.servicepage .prices .dropdown {
+  display: none;
+  max-height: 0;
+  background-color: whitesmoke;
+  margin-bottom: 15px;
+  width: 100%;
+  padding: 20px;
+  overflow: hidden;
+}
+
+.servicepage .prices .dropdown p {
+  text-align: center;
+  font-family: 'Open Sans', 'Roboto', sans-serif;
+  font-size: 22px;
+  color: #333333;
+}
+
+.servicepage .prices .dropdown h1 {
+  text-align: center;
+  margin: 20px 0px;
+  font-weight: bold;
+  font-family: 'Open Sans', 'Roboto', sans-serif;
+  color: #01477f;
+}
+
+.contactpage {
+  width: 100%;
+  height: 100%;
+}
+
+.contactpage > h1 {
+  font-family: 'Open Sans', 'Roboto', sans-serif;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 60px;
+  font-weight: bold;
+}
+
+.contactpage > h2 {
+  margin-top: 30px;
+  font-size: 24px;
+  margin-bottom: 20px;
+  font-weight: bold;
+  color: #4a4a4a;
+}
+
+.contactpage .multiblock {
+  display: flex;
+  flex-direction: row;
+}
+
+.contactpage .multiblock .form {
+  width: 60%;
+  height: max-content;
+}
+
+.contactpage .multiblock .data {
+  width: 40%;
+  height: max-content;
+}
+
+.contactpage .multiblock .data ul {
+  list-style: none;
+}
+
+.contactpage .multiblock .data ul li {
+  font-family: 'Open Sans', 'Roboto', sans-serif;
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #4a4a4a;
+}
+
+.contactpage .multiblock .data ul li strong {
+  margin-left: 10px;
+}
+
+.contactpage .multiblock .form .btn{
+  background-color: #d38d15;
+  color: white;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.basicmenu .tab-pane {
+  padding: 20px;
+}
+
+.basicmenu .title {
+  font-family: 'Open Sans', 'Roboto', sans-serif;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 60px;
+  font-weight: bold;
+}
+
+/* ORDERPAGE */
+
+.orderpage {
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  padding: 20px;
+}
+
+.orderpage .multiblock {
+  display: flex;
+  flex-direction: row;
+}
+
+.orderpage .multiblock .form {
+  width: 58%;
+  margin-right: 2%;
+  height: max-content;
+}
+
+.orderpage .multiblock .data {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  top:50px;
+  height: max-content;
+  width: 40%;
+}
+
+.orderpage .multiblock .data .head {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: max-content;
+  background-color: #f0f0f0;
+  padding: 15px;
+  border-radius: 4px;
+}
+
+.orderpage .multiblock .data .head > h2{
+  font-weight: bold;
+  text-transform: uppercase;
+  font-family: 'Open Sans', 'Roboto', sans-serif;
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.orderpage .multiblock .data .head .summarybox {
+  padding: 5px;
+  height: 100px;
+  background-color: white;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  margin-bottom: 20px;
+  box-shadow: 5px 5px 15px 0px rgba(0,0,0,0.2);
+}
+
+.orderpage .multiblock .data .head .summarybox img{
+  object-fit: contain;
+  margin-right: 10px;
+  border-right: 2px solid #f0f0f0;
+  padding-right: 10px;
+}
+
+.orderpage .multiblock .data .head .summarybox h2{
+  font-family: 'Open Sans', 'Roboto', sans-serif;
+  width: 80%;
+  font-size: 16px;
+  font-style: italic;
+}
+
+.orderpage .multiblock .data .head .summarybox h2 span{
+  position: absolute;
+  background-color: rgba(211, 141, 21, 0.5);
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  padding: 6px 10px;
+  font-weight: bold;
+  font-style: normal;
+  left: -10px;
+  top: -10px;
+}
+
+.orderpage .multiblock .data .head .summarybox h3.price{
+  position: absolute;
+  right: 10px;
+  bottom: 5px;
+  font-size: 18px;
+  font-family: 'Open Sans', 'Roboto', sans-serif;
+  margin: 0;
+}
+
+.orderpage .multiblock .data .foot {  
+  display: flex;
+  flex-direction: column;
+  margin-top:20px;
+  background-color: #f0f0f0;
+  padding: 15px;
+}
+
+.orderpage .multiblock .data .foot h3 {
+  background-color: white;
+  padding: 10px 5px;
+  margin-top:0;
+  margin-bottom: 10px;
+  font-size:18px;
+  font-family: 'Open Sans', 'Roboto', sans-serif;
+}
+
+.orderpage .multiblock .data .foot h3:last-child {
+  margin-bottom: 0px;
+}
+
+.orderpage .multiblock .data .foot h3 i {
+  width: 30px;
+  text-align: center;
+  margin-right:10px;
+}
+
+a:hover{
+  cursor: pointer;
+}
+
+.nav-tabs .nav-item .nav-link{
+  color: #4a4a4a;
 }

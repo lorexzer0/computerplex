@@ -1,4 +1,4 @@
-1576714499a:1:{s:15:"productpage.htm";a:11:{s:8:"fileName";s:15:"productpage.htm";s:7:"content";s:5954:"title = "Termék"
+1576885924a:1:{s:15:"productpage.htm";a:11:{s:8:"fileName";s:15:"productpage.htm";s:7:"content";s:5954:"title = "Termék"
 url = "/termek/:slug"
 layout = "default"
 is_hidden = 0

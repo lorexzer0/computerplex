@@ -34,6 +34,9 @@ class __TwigTemplate_2af831b5abce197b698692affb820305246b82e64b83b227922bc3440a9
     {
         $macros = $this->macros;
         // line 1
+        $context['__cms_component_params'] = [];
+        echo $this->env->getExtension('Cms\Twig\Extension')->componentFunction("session"        , $context['__cms_component_params']        );
+        unset($context['__cms_component_params']);
         echo "<!DOCTYPE html>
 <html>
 
@@ -151,12 +154,12 @@ class __TwigTemplate_2af831b5abce197b698692affb820305246b82e64b83b227922bc3440a9
 
     public function getDebugInfo()
     {
-        return array (  136 => 50,  132 => 49,  121 => 48,  117 => 47,  105 => 37,  101 => 36,  95 => 32,  93 => 31,  87 => 27,  83 => 26,  75 => 20,  72 => 19,  65 => 15,  59 => 12,  52 => 8,  48 => 7,  44 => 6,  37 => 1,);
+        return array (  139 => 50,  135 => 49,  124 => 48,  120 => 47,  108 => 37,  104 => 36,  98 => 32,  96 => 31,  90 => 27,  86 => 26,  78 => 20,  75 => 19,  68 => 15,  62 => 12,  55 => 8,  51 => 7,  47 => 6,  37 => 1,);
     }
 
     public function getSourceContext()
     {
-        return new Source("<!DOCTYPE html>
+        return new Source("{% component 'session' %}<!DOCTYPE html>
 <html>
 
 <head>

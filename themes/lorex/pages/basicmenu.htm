@@ -1,0 +1,30 @@
+title = "Basic Menu"
+url = "/info/:slug"
+layout = "default"
+is_hidden = 0
+
+[blogPost]
+slug = "{{ :slug }}"
+categoryPage = 404
+==
+<?php
+function onEnd()
+{
+    $this->page->title = $this->components['blogPost']->post->title; 
+}
+?>
+==
+{% set post = blogPost.post %}
+<div class="multibox">
+    <div class="sidepanel">
+        {% partial 'box/categorylist' %} 
+    </div>
+    <div class="content product-content">
+        <section class="basicmenu">
+            <h1 class="title">{{ post.title }}</h1>
+            <div class="content">
+                {{ post.content_html|raw }}
+            </div>
+        </section>
+    </div>
+</div>

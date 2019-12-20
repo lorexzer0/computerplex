@@ -1,0 +1,125 @@
+1576885924a:1:{s:11:"contact.htm";a:9:{s:8:"fileName";s:11:"contact.htm";s:7:"content";s:2571:"title = "Kapcsolat"
+url = "/kapcsolat"
+layout = "default"
+is_hidden = 0
+==
+<?php
+function onContactMailSend() {
+    $name = Input::get('name');
+    $email = Input::get('email');
+    $subject = Input::get('tárgy');
+    $content = Input::get('content');
+
+    $vars = ['name' => $name, 'email' => $email, 'content' => $content, 'subject' => $subject];
+
+    // Mail::pretend(); // REMOVE WHEN EVERYTHING IS SET UP
+
+    Mail::send('computerplex::contact.message', $vars, function($message) use ($name,$subject) {
+
+        $message->to('lorexzer0@gmail.com', 'Adminisztrátor');
+        $message->subject($subject);
+
+    });
+
+    return [
+        'vars' => $vars
+    ];
+}
+
+?>
+==
+<div class="multibox">
+    <div class="sidepanel">
+        {% partial 'box/categorylist' %} 
+    </div>
+    <div class="content product-content">
+        <section class="contactpage">
+            <h1 class="title">Kapcsolat</h1>
+            <h2>Kérdésed van, bátran tedd fel!</h2>
+            <div class="multiblock">
+                <div class="form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <input type="text" name="name" class="form-control" placeholder="Név" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" name="email" class="form-control" placeholder="E-Mail" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="tárgy" class="form-control" placeholder="Tárgy" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea name="content" id="" cols="30" rows="10" class="form-control" placeholder="Üzenet szövege..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-block">Küldés</button>
+                    </form>
+                </div>
+                <div class="data">
+                    <ul>
+                        <li>Cím: <strong>9022 Győr, Bajcsy-Zsilinszky u. 51.</strong></li>
+                        <li>Telefon: <strong>+36 96/311-093</strong></li>
+                        <li>Mobil: <strong>+36 70/433-4015</strong></li>
+                        <li>E-Mail: <strong>info@computerplex.hu</strong></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>";s:5:"mtime";i:1576868097;s:6:"markup";s:1867:"<div class="multibox">
+    <div class="sidepanel">
+        {% partial 'box/categorylist' %} 
+    </div>
+    <div class="content product-content">
+        <section class="contactpage">
+            <h1 class="title">Kapcsolat</h1>
+            <h2>Kérdésed van, bátran tedd fel!</h2>
+            <div class="multiblock">
+                <div class="form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <input type="text" name="name" class="form-control" placeholder="Név" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" name="email" class="form-control" placeholder="E-Mail" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="tárgy" class="form-control" placeholder="Tárgy" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea name="content" id="" cols="30" rows="10" class="form-control" placeholder="Üzenet szövege..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-block">Küldés</button>
+                    </form>
+                </div>
+                <div class="data">
+                    <ul>
+                        <li>Cím: <strong>9022 Győr, Bajcsy-Zsilinszky u. 51.</strong></li>
+                        <li>Telefon: <strong>+36 96/311-093</strong></li>
+                        <li>Mobil: <strong>+36 70/433-4015</strong></li>
+                        <li>E-Mail: <strong>info@computerplex.hu</strong></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>";s:4:"code";s:605:"function onContactMailSend() {
+    $name = Input::get('name');
+    $email = Input::get('email');
+    $subject = Input::get('tárgy');
+    $content = Input::get('content');
+
+    $vars = ['name' => $name, 'email' => $email, 'content' => $content, 'subject' => $subject];
+
+    // Mail::pretend(); // REMOVE WHEN EVERYTHING IS SET UP
+
+    Mail::send('computerplex::contact.message', $vars, function($message) use ($name,$subject) {
+
+        $message->to('lorexzer0@gmail.com', 'Adminisztrátor');
+        $message->subject($subject);
+
+    });
+
+    return [
+        'vars' => $vars
+    ];
+}";s:5:"title";s:9:"Kapcsolat";s:3:"url";s:10:"/kapcsolat";s:6:"layout";s:7:"default";s:9:"is_hidden";s:1:"0";}}

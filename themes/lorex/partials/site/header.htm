@@ -1,4 +1,6 @@
 [CategoryList searchCategories]
+
+[Cart]
 ==
 {% set categories = searchCategories.make().tree() %}
 <div class="wrapper bg-main px-lg-5">
@@ -17,17 +19,18 @@
     <div class="right">
       <div class="header-login">
         {% if user %}
-        <a href="">
+        <a href="{{ 'login'|page }}">
           Felhasználóm
         </a>
+        <a data-request="onLogout" data-request-data="redirect: '/'"><i class="fas fa-sign-out-alt"></i> Kijelentkezés</a>
         {% else %}
-        <a href="">
-          Bejelentkezés
+        <a href="{{ 'login'|page }}">
+          Bejelentkezés / Regisztráció
         </a>
         {% endif %}
       </div>
       <div class="currency">
-        <strong>HUF</strong>
+        <strong>{{ Cart.getCurrencyCode() }}</strong>
       </div>
     </div>
   </div>
@@ -81,25 +84,25 @@
             Kategóriák</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#"><i class="fas fa-file-signature"></i> ÁSZF</a>
+          <a class="nav-link" href="{{ 'services'|page }}"><i class="fas fa-clipboard-list"></i> Szolgáltatásaink</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#"><i class="fas fa-shield-alt"></i> Garancia</a>
+          <a class="nav-link" href="{{ 'basicmenu'|page({slug:'aszf'})}}"><i class="fas fa-file-signature"></i> ÁSZF</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#"><i class="fas fa-shipping-fast"></i> Szállítás</a>
+          <a class="nav-link" href="{{ 'basicmenu'|page({slug:'garancia'})}}"><i class="fas fa-shield-alt"></i> Garancia</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#"><i class="fas fa-user-shield"></i> Adatvédelem</a>
+          <a class="nav-link" href="{{ 'basicmenu'|page({slug:'szallitas'})}}"><i class="fas fa-shipping-fast"></i> Szállítás</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#"><i class="fas fa-clipboard-list"></i> Szolgáltatásaink</a>
+          <a class="nav-link" href="{{ 'basicmenu'|page({slug:'adatvedelem'})}}"><i class="fas fa-user-shield"></i> Adatvédelem</a>
+        </li>        
+        <li class="nav-item">
+          <a class="nav-link" href="{{ 'basicmenu'|page({slug:'nyitvatartas'})}}"><i class="fas fa-calendar-alt"></i> Nyitva tartás</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#"><i class="fas fa-calendar-alt"></i> Nyitvatartás</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#"><i class="far fa-address-card"></i> Kapcsolat</a>
+          <a class="nav-link" href="{{ 'contact'|page }}"><i class="far fa-address-card"></i> Kapcsolat</a>
         </li>
       </ul>
     </div>
